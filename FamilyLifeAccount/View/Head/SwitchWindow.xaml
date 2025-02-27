@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="FamilyLifeAccount.View.Head.SwitchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Height="500" Width="600" 
+       xmlns:my="clr-namespace:FamilyLifeAccount.View.Head">
+    <Grid Width="600" Height="500">
+        <my:ImageScrollView HorizontalAlignment="Center" x:Name="imageScrollView1" VerticalAlignment="Top" />
+        <RadioButton Visibility="Hidden" Content="效果1（可连跳）" Height="16" HorizontalAlignment="Left" Margin="38,389,0,0" Name="radioButton1" VerticalAlignment="Top" GroupName="a" Checked="radioButton1_Checked" IsChecked="True" />
+        <RadioButton Visibility="Hidden"  Content="效果2(单跳)" Height="16" HorizontalAlignment="Right" Margin="0,389,313,0" Name="radioButton2" VerticalAlignment="Top" GroupName="a" Checked="radioButton2_Checked" />
+        <CheckBox Visibility="Hidden"  Content="允许持续滑动" Height="16" HorizontalAlignment="Right" Margin="0,389,218,0" Name="checkBox1" VerticalAlignment="Top" Click="checkBox1_Click" IsEnabled="False" />
+    </Grid>
+</UserControl>

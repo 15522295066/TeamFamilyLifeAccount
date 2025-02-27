@@ -1,0 +1,808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62E2656A-6155-444D-9172-506126BCA178}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FamilyLifeAccount</RootNamespace>
+    <AssemblyName>家庭记账系统</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\ICO\logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C7CE1194A8A05F2CD5236DBF13D3325478824EA6</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>FamilyLifeAccount_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>FamilyLifeAccount.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisLogFile>bin\Debug\家庭记账系统.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\家庭记账系统.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\dll\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\dll\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\dll\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.10.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql.Data.6.10.9\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.10.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="RibbonControlsLibrary">
+      <HintPath>..\dll\RibbonControlsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.0.2.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFSpark">
+      <HintPath>..\dll\WPFSpark.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit">
+      <HintPath>DLL\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFVisifire.Charts, Version=4.5.3.1, Culture=neutral, PublicKeyToken=0cd785983078370b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Comm\CollectionUtils.cs" />
+    <Compile Include="Comm\ControlBase.cs" />
+    <Compile Include="Comm\EnumExtension.cs" />
+    <Compile Include="Comm\MessageEnum.cs" />
+    <Compile Include="Comm\Notifications.cs" />
+    <Compile Include="Comm\PageSizeList.cs" />
+    <Compile Include="Comm\Pagination.cs" />
+    <Compile Include="Comm\Paging.cs" />
+    <Compile Include="Comm\PaginViewModel.cs" />
+    <Compile Include="Comm\PasswordBoxHelper.cs" />
+    <Compile Include="Comm\PopUpWindow.xaml.cs">
+      <DependentUpon>PopUpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Comm\RemarkAttribute.cs" />
+    <Compile Include="Comm\UIbase.cs" />
+    <Compile Include="Comm\ViewModelStatus.cs" />
+    <Compile Include="ConvertFormart\ConvertSettings.cs" />
+    <Compile Include="ConvertFormart\StatusToAnimationVisibilityConverter.cs" />
+    <Compile Include="Model\CustomStatus.cs" />
+    <Compile Include="Model\EnableStatus.cs" />
+    <Compile Include="Model\MenuCostClass.cs" />
+    <Compile Include="Model\Months.cs" />
+    <Compile Include="Model\MyCostClass.cs" />
+    <Compile Include="Model\MyCostList.cs" />
+    <Compile Include="ViewModel\EveryDay\CompanyCostMainViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\EveryDay\CompanyEarningViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\EveryDay\CompanyEditCostMainViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\EveryDay\CompanyEditEarningViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\EveryDay\EarningViewModel.cs" />
+    <Compile Include="ViewModel\EveryDay\EditCostMainViewModel.cs" />
+    <Compile Include="ViewModel\EveryDay\EditEarningViewModel.cs" />
+    <Compile Include="ViewModel\EveryDay\EditHonglingViewModel.cs" />
+    <Compile Include="ViewModel\EveryDay\EditMonthCostMainViewModel.cs" />
+    <Compile Include="ViewModel\EveryDay\HonglingViewModel.cs" />
+    <Compile Include="ViewModel\EveryDay\MonthCostMainViewModel.cs" />
+    <Compile Include="ViewModel\Settings\CostClassManageViewModel.cs" />
+    <Compile Include="ViewModel\EveryDay\CostMainViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Settings\CostShopManageViewModel.cs" />
+    <Compile Include="ViewModel\Settings\EarningClassManageViewModel.cs" />
+    <Compile Include="ViewModel\Settings\EditCostClassManageViewModel.cs" />
+    <Compile Include="ViewModel\Settings\EditCostShopManageViewModel.cs" />
+    <Compile Include="ViewModel\Settings\EditEarningClassManageViewModel.cs" />
+    <Compile Include="ViewModel\Settings\EditPersonsManageViewModel.cs" />
+    <Compile Include="ViewModel\Settings\PersonsManageViewModel.cs" />
+    <Compile Include="ViewModel\Share\ViewModelResponsive.cs" />
+    <Compile Include="ViewModel\Statistics\CostChartViewModel.cs" />
+    <Compile Include="ViewModel\Statistics\CostClassChartViewModel.cs" />
+    <Compile Include="ViewModel\Statistics\EarningAndCostViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\EveryDay\CompanyCostMain.xaml.cs">
+      <DependentUpon>CompanyCostMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\CompanyEditCostMain.xaml.cs">
+      <DependentUpon>CompanyEditCostMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\CostMain.xaml.cs">
+      <DependentUpon>CostMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\EarningMain.xaml.cs">
+      <DependentUpon>EarningMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\EditCostMain.xaml.cs">
+      <DependentUpon>EditCostMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\EditEarningMain.xaml.cs">
+      <DependentUpon>EditEarningMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\EditHongling.xaml.cs">
+      <DependentUpon>EditHongling.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\EditMonthCostMain.xaml.cs">
+      <DependentUpon>EditMonthCostMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\HonglingMain.xaml.cs">
+      <DependentUpon>HonglingMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\MonthCostMain.xaml.cs">
+      <DependentUpon>MonthCostMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Head\ImageScrollView.xaml.cs">
+      <DependentUpon>ImageScrollView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Head\SwitchWindow.xaml.cs">
+      <DependentUpon>SwitchWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Head\Viewport3DControl.xaml.cs">
+      <DependentUpon>Viewport3DControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\CostClassManage.xaml.cs">
+      <DependentUpon>CostClassManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\CostShopManage.xaml.cs">
+      <DependentUpon>CostShopManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\EarningClassManage.xaml.cs">
+      <DependentUpon>EarningClassManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\EditCostClassManage.xaml.cs">
+      <DependentUpon>EditCostClassManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\EditCostShopManage.xaml.cs">
+      <DependentUpon>EditCostShopManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\EditEarningClassManage.xaml.cs">
+      <DependentUpon>EditEarningClassManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\EditPersonsManage.xaml.cs">
+      <DependentUpon>EditPersonsManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Settings\PersonsManage.xaml.cs">
+      <DependentUpon>PersonsManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Share\Loading.xaml.cs">
+      <DependentUpon>Loading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Share\Loading2.xaml.cs">
+      <DependentUpon>Loading2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Share\Loading3.xaml.cs">
+      <DependentUpon>Loading3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Statistics\CostChart.xaml.cs">
+      <DependentUpon>CostChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Statistics\CostClassChart.xaml.cs">
+      <DependentUpon>CostClassChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Statistics\EarningAndCostChart.xaml.cs">
+      <DependentUpon>EarningAndCostChart.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Comm\PopUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\AccordionStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\AsyncWorkUserControlStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\BorderStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ButtonStyle2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CalculatorUpDownStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\CloseTabControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\DatePickerStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ImageStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\LoadingResource3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\MainSkin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\PaginationStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\PagingDict.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\PagingSum.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\PasswordBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\PopUpWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Shared.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\XceedToolkit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EveryDay\CompanyCostMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EveryDay\CompanyEditCostMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EveryDay\CostMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EveryDay\EarningMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EveryDay\EditCostMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EveryDay\EditEarningMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\EveryDay\EditHongling.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EveryDay\EditMonthCostMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EveryDay\HonglingMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EveryDay\MonthCostMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Head\ImageScrollView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Head\SwitchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Head\Viewport3DControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\CostClassManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Settings\CostShopManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Settings\EarningClassManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\EditCostClassManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\EditCostShopManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Settings\EditEarningClassManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings\EditPersonsManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Settings\PersonsManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Share\Loading.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Share\Loading2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Share\Loading3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Statistics\CostChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Statistics\CostClassChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Statistics\EarningAndCostChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FamilyLifeAccount.pfx" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataFactory\DataFactory.csproj">
+      <Project>{7D84A1FB-7691-4148-AC1B-BE6EFEB94A28}</Project>
+      <Name>DataFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WPF.Themes\WPF.Themes.csproj">
+      <Project>{CD3CD636-D63E-4BD5-9FE9-2B63DA6F0616}</Project>
+      <Name>WPF.Themes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Button\button_cancel_click.png" />
+    <Resource Include="Images\Button\button_cancel_normal.png" />
+    <Resource Include="Images\Button\button_cancel_over.png" />
+    <Resource Include="Images\Button\button_disable.png" />
+    <Resource Include="Images\Button\button_normal_click.png" />
+    <Resource Include="Images\Button\button_normal_normal.png" />
+    <Resource Include="Images\Button\button_normal_over.png" />
+    <Resource Include="Images\button_a_click.png" />
+    <Resource Include="Images\button_a_normal.png" />
+    <Resource Include="Images\button_a_over.png" />
+    <Resource Include="Images\button_a_unclick.png" />
+    <Resource Include="Images\button_b_click.png" />
+    <Resource Include="Images\button_b_normal.png" />
+    <Resource Include="Images\button_b_over.png" />
+    <Resource Include="Images\by.jpg" />
+    <Resource Include="Images\first.png" />
+    <Resource Include="Images\first_click.png" />
+    <Resource Include="Images\first_over.png" />
+    <Resource Include="Images\last.png" />
+    <Resource Include="Images\last_click.png" />
+    <Resource Include="Images\last_over.png" />
+    <Resource Include="Images\Login\LoginBack.jpg" />
+    <Resource Include="Images\Login\loginback.png" />
+    <Resource Include="Images\Login\login_bg.png" />
+    <Resource Include="Images\Login\login_button_login_click.png" />
+    <Resource Include="Images\Login\login_button_login_normal.png" />
+    <Resource Include="Images\Login\login_button_login_over.png" />
+    <Resource Include="Images\Login\login_icon_account_number_normal.png" />
+    <Resource Include="Images\Login\login_icon_account_number_warning.png" />
+    <Resource Include="Images\Login\login_icon_password_normal.png" />
+    <Resource Include="Images\Login\login_icon_password_warning.png" />
+    <Resource Include="Images\Main\LargeIcon.png" />
+    <Resource Include="Images\Main\logo.png" />
+    <Resource Include="Images\Main\manhelp.png" />
+    <Resource Include="Images\Main\manuser.png" />
+    <Resource Include="Images\Main\side_button_maximize_click.png" />
+    <Resource Include="Images\Main\side_button_maximize_normal.png" />
+    <Resource Include="Images\Main\side_button_maximize_over.png" />
+    <Resource Include="Images\Main\side_button_minimize_click.png" />
+    <Resource Include="Images\Main\side_button_minimize_normal.png" />
+    <Resource Include="Images\Main\side_button_minimize_over.png" />
+    <Resource Include="Images\Main\side_icon_bank.png" />
+    <Resource Include="Images\Main\side_icon_gate.png" />
+    <Resource Include="Images\Main\side_icon_member.png" />
+    <Resource Include="Images\Main\side_icon_statistics.png" />
+    <Resource Include="Images\Main\side_icon_system.png" />
+    <Resource Include="Images\Main\side_icon_tickets.png" />
+    <Resource Include="Images\Main\side_icon_venues.png" />
+    <Resource Include="Images\Main\SmallIcon.png" />
+    <Resource Include="Images\Main\title_bar_button_close_click.png" />
+    <Resource Include="Images\Main\title_bar_button_close_normal.png" />
+    <Resource Include="Images\Main\title_bar_button_close_over.png" />
+    <Resource Include="Images\Main\title_bar_button_dropdown_click.png" />
+    <Resource Include="Images\Main\title_bar_button_dropdown_normal.png" />
+    <Resource Include="Images\Main\title_bar_button_dropdown_over.png" />
+    <Resource Include="Images\Main\title_bar_button_help_click.png" />
+    <Resource Include="Images\Main\title_bar_button_help_normal.png" />
+    <Resource Include="Images\Main\title_bar_button_help_over.png" />
+    <Resource Include="Images\Main\title_bar_button_maximize_click.png" />
+    <Resource Include="Images\Main\title_bar_button_maximize_normal.png" />
+    <Resource Include="Images\Main\title_bar_button_maximize_over.png" />
+    <Resource Include="Images\Main\title_bar_button_minimize_click.png" />
+    <Resource Include="Images\Main\title_bar_button_minimize_normal.png" />
+    <Resource Include="Images\Main\title_bar_button_minimize_over.png" />
+    <Resource Include="Images\Main\title_bar_button_restore_down_click.png" />
+    <Resource Include="Images\Main\title_bar_button_restore_down_normal.png" />
+    <Resource Include="Images\Main\title_bar_button_restore_down_over.png" />
+    <Resource Include="Images\Main\title_bar_button_update_click.png" />
+    <Resource Include="Images\Main\title_bar_button_update_normal.png" />
+    <Resource Include="Images\Main\title_bar_button_update_over.png" />
+    <Resource Include="Images\manhelp.png" />
+    <Resource Include="Images\manuser.png" />
+    <Resource Include="Images\next.png" />
+    <Resource Include="Images\next_click.png" />
+    <Resource Include="Images\next_over.png" />
+    <Resource Include="Images\Paging\table_button_delete_click.png" />
+    <Resource Include="Images\Paging\table_button_delete_normal.png" />
+    <Resource Include="Images\Paging\table_button_delete_over.png" />
+    <Resource Include="Images\Paging\table_button_edit_click.png" />
+    <Resource Include="Images\Paging\table_button_edit_normal.png" />
+    <Resource Include="Images\Paging\table_button_edit_over.png" />
+    <Resource Include="Images\Paging\table_button_first_click.png" />
+    <Resource Include="Images\Paging\table_button_first_normal.png" />
+    <Resource Include="Images\Paging\table_button_first_over.png" />
+    <Resource Include="Images\Paging\table_button_go_click.png" />
+    <Resource Include="Images\Paging\table_button_go_normal.png" />
+    <Resource Include="Images\Paging\table_button_go_over.png" />
+    <Resource Include="Images\Paging\table_button_last_click.png" />
+    <Resource Include="Images\Paging\table_button_last_normal.png" />
+    <Resource Include="Images\Paging\table_button_last_over.png" />
+    <Resource Include="Images\Paging\table_button_next_click.png" />
+    <Resource Include="Images\Paging\table_button_next_normal.png" />
+    <Resource Include="Images\Paging\table_button_next_over.png" />
+    <Resource Include="Images\Paging\table_button_permission_click.png" />
+    <Resource Include="Images\Paging\table_button_permission_normal.png" />
+    <Resource Include="Images\Paging\table_button_permission_over.png" />
+    <Resource Include="Images\Paging\table_button_previous_click.png" />
+    <Resource Include="Images\Paging\table_button_previous_normal.png" />
+    <Resource Include="Images\Paging\table_button_previous_over.png" />
+    <Resource Include="Images\Paging\table_button_unusing_click.png" />
+    <Resource Include="Images\Paging\table_button_unusing_normal.png" />
+    <Resource Include="Images\Paging\table_button_unusing_over.png" />
+    <Resource Include="Images\Paging\table_button_using_click.png" />
+    <Resource Include="Images\Paging\table_button_using_normal.png" />
+    <Resource Include="Images\Paging\table_button_using_over.png" />
+    <Resource Include="Images\Photo.png" />
+    <Resource Include="Images\prew.png" />
+    <Resource Include="Images\prew_click.png" />
+    <Resource Include="Images\prew_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ICO\1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ICO\deposit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ICO\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Head\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Head\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Head\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Head\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Head\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Head\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DLL\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。启用“NuGet 程序包还原”可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

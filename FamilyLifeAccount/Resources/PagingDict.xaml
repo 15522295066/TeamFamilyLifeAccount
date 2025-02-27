@@ -1,0 +1,99 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+                    >
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Resources/PaginationStyle.xaml"/>
+        <ResourceDictionary Source="/Resources/ComboBoxStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <ControlTemplate x:Key="Paging" TargetType="UserControl">
+
+        <Border Height="30" Margin="0, 0,0,0"  Background="Transparent" BorderThickness="1,0,1,1" BorderBrush="#a0a0a0">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="31"/>
+                    <ColumnDefinition Width="31"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="31"/>
+                    <ColumnDefinition Width="31"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Content="每页显示" Grid.Column="1" Style="{StaticResource ShowLabel}"/>
+                <ComboBox  Style="{StaticResource ComboBoxStyle}" Grid.Column="2" HorizontalAlignment="Left"  HorizontalContentAlignment="Left" Width="80" Height="21"
+                      ItemsSource="{Binding PageSizeList}" 
+                              DisplayMemberPath="Pagesize" SelectedValuePath="Pagesize"  SelectedValue="{Binding Pagin.PageSize}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <cmd:EventToCommand Command="{Binding PageSize}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+
+                <Label Grid.Column="3"  FontSize="14" HorizontalAlignment="Right" VerticalContentAlignment="Center"  Content="{Binding Pagin.PageTitle}"  />
+
+                <!--首页-->
+                <Button Grid.Column="5" Style="{StaticResource FirstStyle}" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cmd:EventToCommand Command="{Binding PageTurning}" CommandParameterValue="0"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <!--前一页-->
+                <Button Grid.Column="6" Style="{StaticResource PrewStyle}" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cmd:EventToCommand Command="{Binding PageTurning}"  CommandParameterValue="-1"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <!--输入框-->
+                <TextBox Width="50" Height="21" Text="{Binding Pagin.PageNo}" Grid.Column="8" VerticalContentAlignment="Center"   Name="pagegoto" />
+                <Label Grid.Column="9" Content="{Binding Pagin.CurrentPage}" VerticalContentAlignment="Center"  />
+                <!--Go按钮-->
+                <Button Content="GO" Grid.Column="11" Style="{StaticResource GoStyle}"   >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cmd:EventToCommand Command="{Binding PageGoto}" CommandParameter="{Binding ElementName=pagegoto, Path=Text}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <!--下一页-->
+                <Button Grid.Column="13"   Style="{StaticResource NextStyle}"  >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cmd:EventToCommand Command="{Binding PageTurning}" CommandParameterValue="1"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <!--末页-->
+                <Button Grid.Column="14" Style="{StaticResource LastStyle}" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cmd:EventToCommand Command="{Binding PageTurning}" CommandParameterValue="-99"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <!--<TextBox HorizontalAlignment="Left" Name="pagegoto"  VerticalContentAlignment="Bottom" VerticalAlignment="Bottom" Margin="0,0,0,7" HorizontalContentAlignment="Center" Width="62" Height="25" Text="{Binding Pagin.PageNo}" Grid.Column="6"/>-->
+ 
+            </Grid>
+        </Border>
+      
+    </ControlTemplate>
+</ResourceDictionary>
