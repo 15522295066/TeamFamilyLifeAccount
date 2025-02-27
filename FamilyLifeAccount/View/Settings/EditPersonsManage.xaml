@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="FamilyLifeAccount.View.Settings.EditPersonsManage"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+               xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+            xmlns:help="clr-namespace:FamilyLifeAccount.Comm"
+             mc:Ignorable="d"  DataContext="{Binding EditPersonsManageLocator,  Source={StaticResource Locator}}"
+             x:Name="uc"
+             Height="270" Width="360" >
+
+    <Grid>
+        <Border Style="{StaticResource PopBorderStyle}"  >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Style="{StaticResource TitleLabelStyle}" Content="成员信息" />
+
+                <Border Grid.Row="1" Style="{StaticResource ContentBorderStyle}">
+                    <Grid  Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="45"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label  Grid.Row="0" Grid.Column="0"  Style="{StaticResource LabelStyle}" Content="成员名称：" />
+                        <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding MyPersons.UserName}" Grid.Row="0" Grid.Column="1"   ></TextBox>
+
+                        <Label Style="{StaticResource LabelStyle}" Content="密　　码：" Grid.Row="1" Grid.Column="0"   />
+                        <PasswordBox Style="{StaticResource PasswordBoxStyle}" 
+                                      help:PasswordBoxHelper.Attach="True" help:PasswordBoxHelper.Password="{Binding MyPersons.PassWord, Mode=TwoWay}"
+                                     Grid.Row="1" Grid.Column="1"  />
+
+                        <Label Style="{StaticResource LabelStyle}" Content="状　　态：" Grid.Row="2" Grid.Column="0"   />
+                        <ComboBox Style="{StaticResource ComboBoxStyle}" SelectedValue="{Binding MyPersons.State}" ItemsSource="{Binding StatusList}" DisplayMemberPath="StatusRemark" SelectedValuePath="StatusCode" 
+                           SelectedIndex="1" Grid.Row="2" Grid.Column="1"   />
+
+                        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource CancelButtonStyle}" Content="取消"  Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=uc}"/>
+                        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource SubmitButtonStyle}" Content="确定"  Command="{Binding SubCommand}"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

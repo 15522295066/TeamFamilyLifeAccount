@@ -1,0 +1,908 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="familylifeaccountModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Currency" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="int" />
+        </EntityType>
+        <EntityType Name="cost">
+          <Key>
+            <PropertyRef Name="CostID" />
+          </Key>
+          <Property Name="CostID" Type="int" Nullable="false" />
+          <Property Name="CostName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostClassID" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="CostContent" Type="text" />
+          <Property Name="CostMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <EntityType Name="costclass">
+          <Key>
+            <PropertyRef Name="CostClassID" />
+          </Key>
+          <Property Name="CostClassID" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Images" Type="text" />
+          <Property Name="Remark" Type="text" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <EntityType Name="earning">
+          <Key>
+            <PropertyRef Name="EarningID" />
+          </Key>
+          <Property Name="EarningID" Type="int" Nullable="false" />
+          <Property Name="EarningName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EarningClassID" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="EarningContent" Type="text" />
+          <Property Name="EarningMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <EntityType Name="earningclass">
+          <Key>
+            <PropertyRef Name="EarningClassID" />
+          </Key>
+          <Property Name="EarningClassID" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Images" Type="text" />
+          <Property Name="Remark" Type="text" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <EntityType Name="hongling">
+          <Key>
+            <PropertyRef Name="HonglingID" />
+          </Key>
+          <Property Name="HonglingID" Type="int" Nullable="false" />
+          <Property Name="HonglingName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="HonglingContent" Type="text" />
+          <Property Name="HonglingMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+          <Property Name="EarningClassID" Type="int" />
+        </EntityType>
+        <EntityType Name="monthcost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CostID" Type="int" Nullable="false" />
+          <Property Name="CostName" Type="varchar" MaxLength="50" />
+          <Property Name="CostMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Num" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AddTime" Type="date" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="50" />
+          <Property Name="CostClassID" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="navigation">
+          <Key>
+            <PropertyRef Name="NavigationID" />
+          </Key>
+          <Property Name="NavigationID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="AssemblyPath" Type="text" />
+          <Property Name="Image" Type="varchar" MaxLength="50" />
+          <Property Name="IsShow" Type="int" Nullable="false" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <EntityType Name="persons">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="seedoctor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="10" />
+          <Property Name="Hospital" Type="varchar" MaxLength="50" />
+          <Property Name="Diagnosis" Type="text" />
+          <Property Name="AddTime" Type="date" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="shops">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="int" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="longtext" />
+          <Property Name="CostClassID" Type="int" Nullable="false" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“def.familylifeaccount.view_companycostlist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="view_companycostlist">
+          <Key>
+            <PropertyRef Name="AccountName" />
+            <PropertyRef Name="ShopName" />
+            <PropertyRef Name="CostName" />
+            <PropertyRef Name="AddTime" />
+            <PropertyRef Name="CostMoney" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="ParentID" />
+            <PropertyRef Name="ClassName" />
+          </Key>
+          <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="CostMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostContent" Type="text" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“def.familylifeaccount.view_costlist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="view_costlist">
+          <Key>
+            <PropertyRef Name="AccountName" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="ShopName" />
+            <PropertyRef Name="CostName" />
+            <PropertyRef Name="AddTime" />
+            <PropertyRef Name="CostMoney" />
+            <PropertyRef Name="CostID" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="CostClassID" />
+            <PropertyRef Name="ParentID" />
+            <PropertyRef Name="ClassName" />
+          </Key>
+          <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="CostMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CostID" Type="int" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+          <Property Name="CostClassID" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostContent" Type="text" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“def.familylifeaccount.view_earninglist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="view_earninglist">
+          <Key>
+            <PropertyRef Name="EarningClassID" />
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="EarningID" />
+            <PropertyRef Name="EarningName" />
+            <PropertyRef Name="EarningMoney" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="AccountName" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="AddTime" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="EarningClassID" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EarningID" Type="int" Nullable="false" />
+          <Property Name="EarningName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EarningMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“def.familylifeaccount.view_honglinglist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="view_honglinglist">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="AccountName" />
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="EarningClassID" />
+            <PropertyRef Name="HonglingID" />
+            <PropertyRef Name="HonglingName" />
+            <PropertyRef Name="HonglingMoney" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="AddTime" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EarningClassID" Type="int" Nullable="false" />
+          <Property Name="HonglingID" Type="int" Nullable="false" />
+          <Property Name="HonglingName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HonglingMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“def.familylifeaccount.view_shopslist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="view_shopslist">
+          <Key>
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="CostClassID" />
+            <PropertyRef Name="ShopID" />
+            <PropertyRef Name="ShopName" />
+          </Key>
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostClassID" Type="int" Nullable="false" />
+          <Property Name="ShopID" Type="int" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="longtext" />
+          <Property Name="IsCompany" Type="int" />
+        </EntityType>
+        <EntityContainer Name="familylifeaccountModelStoreContainer">
+          <EntitySet Name="account" EntityType="Self.account" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="cost" EntityType="Self.cost" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="costclass" EntityType="Self.costclass" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="earning" EntityType="Self.earning" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="earningclass" EntityType="Self.earningclass" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="hongling" EntityType="Self.hongling" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="monthcost" EntityType="Self.monthcost" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="navigation" EntityType="Self.navigation" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="persons" EntityType="Self.persons" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="seedoctor" EntityType="Self.seedoctor" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="shops" EntityType="Self.shops" Schema="familylifeaccount" store:Type="Tables" />
+          <EntitySet Name="view_companycostlist" EntityType="Self.view_companycostlist" store:Type="Views" store:Schema="familylifeaccount">
+            <DefiningQuery>SELECT
+`view_companycostlist`.`AccountName`, 
+`view_companycostlist`.`ShopName`, 
+`view_companycostlist`.`CostName`, 
+`view_companycostlist`.`AddTime`, 
+`view_companycostlist`.`CostMoney`, 
+`view_companycostlist`.`IsDel`, 
+`view_companycostlist`.`ParentID`, 
+`view_companycostlist`.`ClassName`, 
+`view_companycostlist`.`CostContent`, 
+`view_companycostlist`.`IsCompany`
+FROM `view_companycostlist` AS `view_companycostlist`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_costlist" EntityType="Self.view_costlist" store:Type="Views" store:Schema="familylifeaccount">
+            <DefiningQuery>SELECT
+`view_costlist`.`AccountName`, 
+`view_costlist`.`UserName`, 
+`view_costlist`.`ShopName`, 
+`view_costlist`.`CostName`, 
+`view_costlist`.`AddTime`, 
+`view_costlist`.`CostMoney`, 
+`view_costlist`.`CostID`, 
+`view_costlist`.`IsDel`, 
+`view_costlist`.`CostClassID`, 
+`view_costlist`.`ParentID`, 
+`view_costlist`.`ClassName`, 
+`view_costlist`.`CostContent`, 
+`view_costlist`.`IsCompany`
+FROM `view_costlist` AS `view_costlist`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_earninglist" EntityType="Self.view_earninglist" store:Type="Views" store:Schema="familylifeaccount">
+            <DefiningQuery>SELECT
+`view_earninglist`.`EarningClassID`, 
+`view_earninglist`.`ClassName`, 
+`view_earninglist`.`EarningID`, 
+`view_earninglist`.`EarningName`, 
+`view_earninglist`.`EarningMoney`, 
+`view_earninglist`.`IsDel`, 
+`view_earninglist`.`AccountName`, 
+`view_earninglist`.`UserName`, 
+`view_earninglist`.`AddTime`, 
+`view_earninglist`.`UserID`, 
+`view_earninglist`.`AccountID`, 
+`view_earninglist`.`IsCompany`
+FROM `view_earninglist` AS `view_earninglist`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_honglinglist" EntityType="Self.view_honglinglist" store:Type="Views" store:Schema="familylifeaccount">
+            <DefiningQuery>SELECT
+`view_honglinglist`.`UserID`, 
+`view_honglinglist`.`UserName`, 
+`view_honglinglist`.`AccountID`, 
+`view_honglinglist`.`AccountName`, 
+`view_honglinglist`.`ClassName`, 
+`view_honglinglist`.`EarningClassID`, 
+`view_honglinglist`.`HonglingID`, 
+`view_honglinglist`.`HonglingName`, 
+`view_honglinglist`.`HonglingMoney`, 
+`view_honglinglist`.`IsDel`, 
+`view_honglinglist`.`AddTime`
+FROM `view_honglinglist` AS `view_honglinglist`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_shopslist" EntityType="Self.view_shopslist" store:Type="Views" store:Schema="familylifeaccount">
+            <DefiningQuery>SELECT
+`view_shopslist`.`ClassName`, 
+`view_shopslist`.`CostClassID`, 
+`view_shopslist`.`ShopID`, 
+`view_shopslist`.`ShopName`, 
+`view_shopslist`.`Address`, 
+`view_shopslist`.`IsCompany`
+FROM `view_shopslist` AS `view_shopslist`</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="familylifeaccountModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Money" Type="Decimal" Nullable="false" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="Int32" />
+        </EntityType>
+        <EntityType Name="cost">
+          <Key>
+            <PropertyRef Name="CostID" />
+          </Key>
+          <Property Name="CostID" Type="Int32" Nullable="false" />
+          <Property Name="CostName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostClassID" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="CostContent" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="CostMoney" Type="Decimal" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="costclass">
+          <Key>
+            <PropertyRef Name="CostClassID" />
+          </Key>
+          <Property Name="CostClassID" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Images" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="earning">
+          <Key>
+            <PropertyRef Name="EarningID" />
+          </Key>
+          <Property Name="EarningID" Type="Int32" Nullable="false" />
+          <Property Name="EarningName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EarningClassID" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="EarningContent" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="EarningMoney" Type="Decimal" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="earningclass">
+          <Key>
+            <PropertyRef Name="EarningClassID" />
+          </Key>
+          <Property Name="EarningClassID" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Images" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="hongling">
+          <Key>
+            <PropertyRef Name="HonglingID" />
+          </Key>
+          <Property Name="HonglingID" Type="Int32" Nullable="false" />
+          <Property Name="HonglingName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="HonglingContent" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="HonglingMoney" Type="Decimal" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+          <Property Name="EarningClassID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="monthcost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CostID" Type="Int32" Nullable="false" />
+          <Property Name="CostName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CostMoney" Type="Decimal" />
+          <Property Name="Num" Type="Decimal" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CostClassID" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitPrice" Type="Decimal" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="navigation">
+          <Key>
+            <PropertyRef Name="NavigationID" />
+          </Key>
+          <Property Name="NavigationID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="AssemblyPath" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsShow" Type="Int32" Nullable="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="persons">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="seedoctor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Hospital" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Diagnosis" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="AddTime" Type="DateTime" />
+          <Property Name="Cost" Type="Decimal" />
+          <Property Name="UserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="shops">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="CostClassID" Type="Int32" Nullable="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="view_companycostlist">
+          <Key>
+            <PropertyRef Name="AccountName" />
+            <PropertyRef Name="ShopName" />
+            <PropertyRef Name="CostName" />
+            <PropertyRef Name="AddTime" />
+            <PropertyRef Name="CostMoney" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="ParentID" />
+            <PropertyRef Name="ClassName" />
+          </Key>
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="CostMoney" Type="Decimal" Nullable="false" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostContent" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="view_costlist">
+          <Key>
+            <PropertyRef Name="AccountName" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="ShopName" />
+            <PropertyRef Name="CostName" />
+            <PropertyRef Name="AddTime" />
+            <PropertyRef Name="CostMoney" />
+            <PropertyRef Name="CostID" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="CostClassID" />
+            <PropertyRef Name="ParentID" />
+            <PropertyRef Name="ClassName" />
+          </Key>
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="CostMoney" Type="Decimal" Nullable="false" />
+          <Property Name="CostID" Type="Int32" Nullable="false" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+          <Property Name="CostClassID" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostContent" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="view_earninglist">
+          <Key>
+            <PropertyRef Name="EarningClassID" />
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="EarningID" />
+            <PropertyRef Name="EarningName" />
+            <PropertyRef Name="EarningMoney" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="AccountName" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="AddTime" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="EarningClassID" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EarningID" Type="Int32" Nullable="false" />
+          <Property Name="EarningName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EarningMoney" Type="Decimal" Nullable="false" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityType Name="view_honglinglist">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="AccountID" />
+            <PropertyRef Name="AccountName" />
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="EarningClassID" />
+            <PropertyRef Name="HonglingID" />
+            <PropertyRef Name="HonglingName" />
+            <PropertyRef Name="HonglingMoney" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="AddTime" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EarningClassID" Type="Int32" Nullable="false" />
+          <Property Name="HonglingID" Type="Int32" Nullable="false" />
+          <Property Name="HonglingName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HonglingMoney" Type="Decimal" Nullable="false" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="view_shopslist">
+          <Key>
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="CostClassID" />
+            <PropertyRef Name="ShopID" />
+            <PropertyRef Name="ShopName" />
+          </Key>
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CostClassID" Type="Int32" Nullable="false" />
+          <Property Name="ShopID" Type="Int32" Nullable="false" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="IsCompany" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="familylifeaccountEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="account" EntityType="Self.account" />
+          <EntitySet Name="cost" EntityType="Self.cost" />
+          <EntitySet Name="costclass" EntityType="Self.costclass" />
+          <EntitySet Name="earning" EntityType="Self.earning" />
+          <EntitySet Name="earningclass" EntityType="Self.earningclass" />
+          <EntitySet Name="hongling" EntityType="Self.hongling" />
+          <EntitySet Name="monthcost" EntityType="Self.monthcost" />
+          <EntitySet Name="navigation" EntityType="Self.navigation" />
+          <EntitySet Name="persons" EntityType="Self.persons" />
+          <EntitySet Name="seedoctor" EntityType="Self.seedoctor" />
+          <EntitySet Name="shops" EntityType="Self.shops" />
+          <EntitySet Name="view_companycostlist" EntityType="Self.view_companycostlist" />
+          <EntitySet Name="view_costlist" EntityType="Self.view_costlist" />
+          <EntitySet Name="view_earninglist" EntityType="Self.view_earninglist" />
+          <EntitySet Name="view_honglinglist" EntityType="Self.view_honglinglist" />
+          <EntitySet Name="view_shopslist" EntityType="Self.view_shopslist" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="familylifeaccountModelStoreContainer" CdmEntityContainer="familylifeaccountEntities">
+          <EntitySetMapping Name="account">
+            <EntityTypeMapping TypeName="familylifeaccountModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cost">
+            <EntityTypeMapping TypeName="familylifeaccountModel.cost">
+              <MappingFragment StoreEntitySet="cost">
+                <ScalarProperty Name="CostID" ColumnName="CostID" />
+                <ScalarProperty Name="CostName" ColumnName="CostName" />
+                <ScalarProperty Name="CostClassID" ColumnName="CostClassID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="CostContent" ColumnName="CostContent" />
+                <ScalarProperty Name="CostMoney" ColumnName="CostMoney" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="costclass">
+            <EntityTypeMapping TypeName="familylifeaccountModel.costclass">
+              <MappingFragment StoreEntitySet="costclass">
+                <ScalarProperty Name="CostClassID" ColumnName="CostClassID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="earning">
+            <EntityTypeMapping TypeName="familylifeaccountModel.earning">
+              <MappingFragment StoreEntitySet="earning">
+                <ScalarProperty Name="EarningID" ColumnName="EarningID" />
+                <ScalarProperty Name="EarningName" ColumnName="EarningName" />
+                <ScalarProperty Name="EarningClassID" ColumnName="EarningClassID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="EarningContent" ColumnName="EarningContent" />
+                <ScalarProperty Name="EarningMoney" ColumnName="EarningMoney" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="earningclass">
+            <EntityTypeMapping TypeName="familylifeaccountModel.earningclass">
+              <MappingFragment StoreEntitySet="earningclass">
+                <ScalarProperty Name="EarningClassID" ColumnName="EarningClassID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hongling">
+            <EntityTypeMapping TypeName="familylifeaccountModel.hongling">
+              <MappingFragment StoreEntitySet="hongling">
+                <ScalarProperty Name="HonglingID" ColumnName="HonglingID" />
+                <ScalarProperty Name="HonglingName" ColumnName="HonglingName" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="HonglingContent" ColumnName="HonglingContent" />
+                <ScalarProperty Name="HonglingMoney" ColumnName="HonglingMoney" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="EarningClassID" ColumnName="EarningClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="monthcost">
+            <EntityTypeMapping TypeName="familylifeaccountModel.monthcost">
+              <MappingFragment StoreEntitySet="monthcost">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CostID" ColumnName="CostID" />
+                <ScalarProperty Name="CostName" ColumnName="CostName" />
+                <ScalarProperty Name="CostMoney" ColumnName="CostMoney" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CostClassID" ColumnName="CostClassID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="navigation">
+            <EntityTypeMapping TypeName="familylifeaccountModel.navigation">
+              <MappingFragment StoreEntitySet="navigation">
+                <ScalarProperty Name="NavigationID" ColumnName="NavigationID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="AssemblyPath" ColumnName="AssemblyPath" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="persons">
+            <EntityTypeMapping TypeName="familylifeaccountModel.persons">
+              <MappingFragment StoreEntitySet="persons">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seedoctor">
+            <EntityTypeMapping TypeName="familylifeaccountModel.seedoctor">
+              <MappingFragment StoreEntitySet="seedoctor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Hospital" ColumnName="Hospital" />
+                <ScalarProperty Name="Diagnosis" ColumnName="Diagnosis" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shops">
+            <EntityTypeMapping TypeName="familylifeaccountModel.shops">
+              <MappingFragment StoreEntitySet="shops">
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CostClassID" ColumnName="CostClassID" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_companycostlist">
+            <EntityTypeMapping TypeName="familylifeaccountModel.view_companycostlist">
+              <MappingFragment StoreEntitySet="view_companycostlist">
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="CostName" ColumnName="CostName" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="CostMoney" ColumnName="CostMoney" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="CostContent" ColumnName="CostContent" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_costlist">
+            <EntityTypeMapping TypeName="familylifeaccountModel.view_costlist">
+              <MappingFragment StoreEntitySet="view_costlist">
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="CostName" ColumnName="CostName" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="CostMoney" ColumnName="CostMoney" />
+                <ScalarProperty Name="CostID" ColumnName="CostID" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="CostClassID" ColumnName="CostClassID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="CostContent" ColumnName="CostContent" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_earninglist">
+            <EntityTypeMapping TypeName="familylifeaccountModel.view_earninglist">
+              <MappingFragment StoreEntitySet="view_earninglist">
+                <ScalarProperty Name="EarningClassID" ColumnName="EarningClassID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="EarningID" ColumnName="EarningID" />
+                <ScalarProperty Name="EarningName" ColumnName="EarningName" />
+                <ScalarProperty Name="EarningMoney" ColumnName="EarningMoney" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_honglinglist">
+            <EntityTypeMapping TypeName="familylifeaccountModel.view_honglinglist">
+              <MappingFragment StoreEntitySet="view_honglinglist">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="EarningClassID" ColumnName="EarningClassID" />
+                <ScalarProperty Name="HonglingID" ColumnName="HonglingID" />
+                <ScalarProperty Name="HonglingName" ColumnName="HonglingName" />
+                <ScalarProperty Name="HonglingMoney" ColumnName="HonglingMoney" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_shopslist">
+            <EntityTypeMapping TypeName="familylifeaccountModel.view_shopslist">
+              <MappingFragment StoreEntitySet="view_shopslist">
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="CostClassID" ColumnName="CostClassID" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

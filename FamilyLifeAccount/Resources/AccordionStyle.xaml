@@ -1,0 +1,511 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
+                    xmlns:my="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+                    xmlns:mypri="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Layout.Toolkit"
+                    xmlns:vsm="clr-namespace:System.Windows;assembly=WPFToolkit"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+
+    <Style TargetType="my:Accordion" x:Key="AccordionStyle">
+        <Setter Property="FontFamily" Value="Microsoft JhengHei UI"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"  Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"  Value="Auto"/>
+    </Style>
+    
+    <!--一级导航按钮样式-->
+    <Style x:Key="AccordionButtonStyle" TargetType="mypri:AccordionButton">
+        <Setter Property="BorderThickness" Value="0,0,0,0" />
+        <Setter Property="BorderBrush" Value="#000000" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="mypri:AccordionButton">
+                    <Grid Margin="{TemplateBinding Padding}" Background="Transparent">
+                        <Border x:Name="background" Background="{TemplateBinding Background}" CornerRadius="1,1,1,1">
+                            <Grid>
+                                <Border Height="Auto" Margin="0,0,0,0" x:Name="ExpandedBackground" VerticalAlignment="Stretch" Opacity="0" Background="#FFBADDE9" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1,1,1,1" />
+                                <Border Height="Auto" Margin="0,0,0,0" x:Name="MouseOverBackground" VerticalAlignment="Stretch" Opacity="0" Background="#FFBDBDBD" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1,1,1,1" />
+                                <Grid Background="Transparent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" x:Name="cd0" />
+                                        <ColumnDefinition Width="Auto" x:Name="cd1" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" x:Name="rd0" />
+                                        <RowDefinition Height="Auto" x:Name="rd1" />
+                                    </Grid.RowDefinitions>
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="6,6,6,0" x:Name="header" Grid.Column="1" Grid.Row="0" Grid.RowSpan="1" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <Rectangle x:Name="FocusVisualElement" IsHitTestVisible="false" Visibility="Collapsed" RadiusX="1" RadiusY="1" Stroke="#FF6DBDD1" StrokeThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+<!--导航子级样式-->
+    <Style x:Key="AccordionItemStyle" TargetType="my:AccordionItem">
+        <Setter Property="BorderThickness" Value="0,1,0,0" />
+        <Setter Property="BorderBrush" Value="#a0a0a0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontFamily"  Value="Microsoft YaHei UI"/>
+         <!--Item项样式-->
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+       
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="my:AccordionItem">
+                    <!-- Background="{TemplateBinding Background}"  -->
+                    <Grid Background="Transparent" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                        <vsm:VisualStateManager.VisualStateGroups>
+                            <!-- CommonState -->
+                            <vsm:VisualStateGroup x:Name="CommonStates">
+                                <vsm:VisualStateGroup.Transitions>
+                                    <vsm:VisualTransition GeneratedDuration="0" />
+                                </vsm:VisualStateGroup.Transitions>
+                                <vsm:VisualState x:Name="Normal" />
+                                <vsm:VisualState x:Name="Pressed" />
+                                <vsm:VisualState x:Name="MouseOver" />
+                                <vsm:VisualState x:Name="Disabled" />
+                            </vsm:VisualStateGroup>
+                            <!-- FocusStates -->
+                            <vsm:VisualStateGroup x:Name="FocusStates">
+                                <vsm:VisualState x:Name="Focused" />
+                                <vsm:VisualState x:Name="Unfocused" />
+                            </vsm:VisualStateGroup>
+                            <!-- ExpansionStates -->
+                            <vsm:VisualStateGroup x:Name="ExpansionStates">
+                                <vsm:VisualStateGroup.Transitions>
+                                    <vsm:VisualTransition GeneratedDuration="0" />
+                                </vsm:VisualStateGroup.Transitions>
+                                <vsm:VisualState x:Name="Collapsed">
+                                    <Storyboard x:Name="AccordionItemCollapsedStoryboard">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(mypri:ExpandableContentControl.Percentage)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.3" KeySpline="0.2,0,0,1" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00.3" Duration="00:00:00" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+                                <vsm:VisualState x:Name="Expanded">
+                                    <Storyboard x:Name="AccordionItemExpandedStoryboard">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(mypri:ExpandableContentControl.Percentage)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.3" KeySpline="0.2,0,0,1" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+                            </vsm:VisualStateGroup>
+                            <!-- ExpansionStates -->
+                            <vsm:VisualStateGroup x:Name="LockedStates">
+                                <vsm:VisualStateGroup.Transitions>
+                                    <vsm:VisualTransition GeneratedDuration="0" />
+                                </vsm:VisualStateGroup.Transitions>
+                                <vsm:VisualState x:Name="Locked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpanderButton" Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Boolean>False</sys:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+                                <vsm:VisualState x:Name="Unlocked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpanderButton" Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Boolean>True</sys:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+                            </vsm:VisualStateGroup>
+                            <!-- ExpandDirectionStates-->
+                            <vsm:VisualStateGroup x:Name="ExpandDirectionStates">
+                                <vsm:VisualStateGroup.Transitions>
+                                    <vsm:VisualTransition GeneratedDuration="0" />
+                                </vsm:VisualStateGroup.Transitions>
+                                <vsm:VisualState x:Name="ExpandDown">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="rd1" Storyboard.TargetProperty="Height">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <GridLength>*</GridLength>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="cd0" Storyboard.TargetProperty="Width">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <GridLength>*</GridLength>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+                                <vsm:VisualState x:Name="ExpandUp">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpanderButton" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>1</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>0</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="rd0" Storyboard.TargetProperty="Height">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <GridLength>*</GridLength>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="cd0" Storyboard.TargetProperty="Width">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <GridLength>*</GridLength>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+                                <vsm:VisualState x:Name="ExpandLeft">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpanderButton" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>1</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>1</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpanderButton" Storyboard.TargetProperty="(Grid.RowSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>2</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(Grid.RowSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>2</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpanderButton" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>1</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>0</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="rd0" Storyboard.TargetProperty="Height">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <GridLength>*</GridLength>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="cd0" Storyboard.TargetProperty="Width">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <GridLength>*</GridLength>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+                                <vsm:VisualState x:Name="ExpandRight">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpanderButton" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>1</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(Grid.ColumnSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>1</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpanderButton" Storyboard.TargetProperty="(Grid.RowSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>2</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(Grid.RowSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>2</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>0</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ExpandSite" Storyboard.TargetProperty="(Grid.Column)">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <sys:Int32>1</sys:Int32>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="rd0" Storyboard.TargetProperty="Height">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <GridLength>*</GridLength>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="cd1" Storyboard.TargetProperty="Width">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <GridLength>*</GridLength>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </vsm:VisualState>
+                            </vsm:VisualStateGroup>
+                        </vsm:VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Background" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" x:Name="rd0" />
+                                    <RowDefinition Height="Auto" x:Name="rd1" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" x:Name="cd0" />
+                                    <ColumnDefinition Width="Auto" x:Name="cd1" />
+                                </Grid.ColumnDefinitions>
+                                <Border BorderBrush="LightGray" BorderThickness="{TemplateBinding BorderThickness}" Grid.Row="0">
+                                    <mypri:AccordionButton Name="ExpanderButton" Style="{TemplateBinding AccordionButtonStyle}" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" IsChecked="{TemplateBinding IsSelected}" IsTabStop="True" Padding="0,0,0,0" Margin="0,0,0,0" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" Background="{TemplateBinding Background}" />
+                                </Border>
+                                <mypri:ExpandableContentControl Name="ExpandSite" Grid.Row="1" IsTabStop="False" Percentage="0" RevealMode="{TemplateBinding ExpandDirection}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="0,0,0,0" Style="{TemplateBinding ExpandableContentControlStyle}" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" FontStretch="{TemplateBinding FontStretch}" FontStyle="{TemplateBinding FontStyle}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Item图片样式-->
+    <Style BasedOn="{StaticResource AccordionItemStyle}" TargetType="my:AccordionItem" x:Key="001AccordionItemStyle">
+        <!--<Setter Property="Width" Value="34"/>
+        <Setter Property="Height" Value="34"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>-->
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_tickets.png"  Stretch="UniformToFill"  />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource AccordionItemStyle}" TargetType="my:AccordionItem" x:Key="002AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_tickets.png" Stretch="None" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource AccordionItemStyle}" TargetType="my:AccordionItem" x:Key="003AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_gate.png" Stretch="None" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource AccordionItemStyle}" TargetType="my:AccordionItem" x:Key="004AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_venues.png" Stretch="None" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource AccordionItemStyle}" TargetType="my:AccordionItem" x:Key="005AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_bank.png"  Stretch="None" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource AccordionItemStyle}" TargetType="my:AccordionItem" x:Key="006AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_system.png" Stretch="None" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource AccordionItemStyle}" TargetType="my:AccordionItem" x:Key="007AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_statistics.png" Stretch="None" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style TargetType="Grid" x:Key="MainGridStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush TileMode="Tile"  />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style  TargetType="my:AccordionItem" x:Key="001AccordionItemStyle">
+        <Setter Property="Background" >
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_member.png" Stretch="Fill" AlignmentX="Center"/>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style   TargetType="my:AccordionItem" x:Key="002AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_tickets.png" Stretch="Fill" AlignmentX="Center"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style   TargetType="my:AccordionItem" x:Key="003AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_gate.png" Stretch="Fill" AlignmentX="Center"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style   TargetType="my:AccordionItem" x:Key="004AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_venues.png" Stretch="Fill" AlignmentX="Center"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style   TargetType="my:AccordionItem" x:Key="005AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_back.png"  Stretch="Fill" AlignmentX="Center"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style   TargetType="my:AccordionItem" x:Key="006AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_system.png" Stretch="Fill" AlignmentX="Center"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style   TargetType="my:AccordionItem" x:Key="007AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/side_icon_statistics.png" Stretch="Fill" AlignmentX="Center"/>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+
+    <!--<Style TargetType="my:AccordionItem" x:Key="008AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/kechengbiao.png" Stretch="Uniform" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="my:AccordionItem" x:Key="009AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/yingyunbiao.png" Stretch="Uniform" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="my:AccordionItem" x:Key="010AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/huodongbiao.png" Stretch="Uniform" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="my:AccordionItem" x:Key="011AccordionItemStyle">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Main/huiyuanbiao.png" Stretch="Uniform" AlignmentX="Left"/>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+</ResourceDictionary>

@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="FamilyLifeAccount.View.Statistics.CostChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+           
+
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+             DataContext="{Binding CostChartLocator, Source={StaticResource Locator}}">
+    <Grid Style="{StaticResource MainGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="170" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--上半部分-->
+        <Border  Grid.Row="0" Grid.Column="0" Style="{StaticResource BorderStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="45" />
+                </Grid.RowDefinitions>
+
+                <Label Style="{StaticResource HeadLabelStyle}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="日常支出图表：" />
+
+                <Label Style="{StaticResource LabelStyle}" Grid.Row="1"  Grid.Column="0" Content="开始时间：" />
+                <DatePicker Style="{StaticResource DatePickerStyle}" Name="DpSdate"  Grid.Row="1" Grid.Column="1"  />
+                <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="3" Content="结束时间：" />
+                <DatePicker Style="{StaticResource DatePickerStyle}" Name="DpEdate"   Grid.Row="1" Grid.Column="4"  />
+
+
+                <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Content="父级分类：" />
+                <ComboBox Name="cbbParent" Style="{StaticResource ComboBoxStyle}" Grid.Row="2" Grid.Column="1" SelectedIndex="0" SelectionChanged="cbbParent_SelectionChanged" />
+
+                <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="3" Content="子级分类：" />
+                <ComboBox Name="cbbChild"  Style="{StaticResource ComboBoxStyle}" Grid.Row="2" Grid.Column="4" SelectedIndex="0"  />
+                
+                <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="6" Content="统计图：" />
+                <ComboBox  Style="{StaticResource ComboBoxStyle}" Grid.Column="7" Grid.Row="2"  Name="cbbChartType"  />
+                
+                <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Grid.Column="9" Content="搜　　索"  Name="BtSearch" Click="BtSearch_Click" />
+                <Button Style="{StaticResource ButtonStyle}" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="9" Content="导出图表" Name="BtExpor" Click="BtExpor_Click" />
+                
+            </Grid>
+        </Border>
+        <!--下半部分-->
+        <Border Grid.Row="3" Style="{StaticResource BorderStyle}">
+            <Grid Name="Simon" >
+                
+            </Grid>
+        </Border>
+    </Grid>
+
+</UserControl>

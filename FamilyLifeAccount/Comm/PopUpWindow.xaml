@@ -1,0 +1,28 @@
+﻿<Window x:Class="FamilyLifeAccount.Comm.PopUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:FamilyLifeAccount.View.Settings" 
+        Title="PopUpWindow" MouseLeftButtonDown="Window_MouseLeftButtonDown" 
+        Name="pop"  
+        > 
+    
+        <Window.Resources>
+        <Style TargetType="Window" x:Key="WindowStyle">
+            <Setter  Property="AllowsTransparency" Value="True"/>
+            <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="AllowDrop" Value="True"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+       <ResourceDictionary x:Key="local">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/PopUpWindow.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary> 
+    </Window.Resources>
+    <Border    BorderThickness="2" BorderBrush="Transparent"  >
+        <Grid Name="griduc"/>
+        <Border.Effect>
+            <DropShadowEffect RenderingBias="Quality" BlurRadius="5"  ShadowDepth="3" Direction="0" Opacity="0.5"/>
+        </Border.Effect>
+      </Border>
+</Window>

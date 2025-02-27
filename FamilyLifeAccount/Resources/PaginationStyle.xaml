@@ -1,0 +1,299 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="Label" x:Key="ShowLabel">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="SumLabel">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+
+    </Style>
+
+    <Style TargetType="Button" x:Key="FirstStyle">
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Paging/table_button_first_normal.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="21"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" BorderThickness="0" Padding="0,0,0,0" 
+                                BorderBrush="Transparent" CornerRadius="2" 
+                                Background="{TemplateBinding Background}">
+                        <Grid >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_first_over.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_first_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_first_normal.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <!--<Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_first_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>-->
+                       
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="PrewStyle">
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Paging/table_button_previous_normal.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="21"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" BorderThickness="0" Padding="0,0,0,0" 
+                                BorderBrush="Transparent" CornerRadius="2" 
+                                Background="{TemplateBinding Background}">
+                        <Grid >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_previous_over.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_previous_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_previous_normal.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <!--<Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_previous_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="NextStyle">
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Paging/table_button_next_normal.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="21"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" BorderThickness="0" Padding="0,0,0,0" 
+                                BorderBrush="Transparent" CornerRadius="2" 
+                                Background="{TemplateBinding Background}">
+                        <Grid >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_next_over.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_next_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_next_normal.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <!--<Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_next_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="LastStyle">
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Paging/table_button_last_normal.png"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="21"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" BorderThickness="0" Padding="0,0,0,0" 
+                                BorderBrush="Transparent" CornerRadius="2" 
+                                Background="{TemplateBinding Background}">
+                        <Grid >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_last_over.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_last_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_last_normal.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <!--<Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_last_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="GoStyle">
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="#ffffff" />
+        <Setter Property="Content" Value="GO"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Height" Value="21"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/Images/Paging/table_button_go_normal.png"/>
+            </Setter.Value>
+        </Setter>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" BorderThickness="0" Padding="0,0,0,0" 
+                                BorderBrush="Transparent" CornerRadius="2" 
+                                Background="{TemplateBinding Background}">
+                        <Grid >
+                            <ContentPresenter  Content="GO" HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#ffffff" />
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_go_over.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground" Value="#ffffff" />
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Images/Paging/table_button_go_click.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                      
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>
