@@ -133,6 +133,9 @@
     <Compile Include="MODEL\account.cs">
       <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="MODEL\company.cs">
+      <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="MODEL\cost.cs">
       <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
     </Compile>
@@ -170,9 +173,6 @@
       <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="MODEL\persons.cs">
-      <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MODEL\seedoctor.cs">
       <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="MODEL\shops.cs">

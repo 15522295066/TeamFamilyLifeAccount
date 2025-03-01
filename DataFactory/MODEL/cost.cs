@@ -25,5 +25,6 @@ namespace DataFactory.MODEL
         public int ShopID { get; set; }
         public int IsDel { get; set; }
         public Nullable<int> IsCompany { get; set; }
+        public string CompanyId { get; set; }
     }
 }

@@ -12,14 +12,10 @@ namespace DataFactory.MODEL
     using System;
     using System.Collections.Generic;
     
-    public partial class seedoctor
+    public partial class company
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Hospital { get; set; }
-        public string Diagnosis { get; set; }
+        public string CompanyId { get; set; }
+        public string CompanyName { get; set; }
         public Nullable<System.DateTime> AddTime { get; set; }
-        public Nullable<decimal> Cost { get; set; }
-        public Nullable<int> UserID { get; set; }
     }
 }

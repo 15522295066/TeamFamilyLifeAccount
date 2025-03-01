@@ -26,6 +26,7 @@ namespace DataFactory.MODEL
         }
     
         public virtual DbSet<account> account { get; set; }
+        public virtual DbSet<company> company { get; set; }
         public virtual DbSet<cost> cost { get; set; }
         public virtual DbSet<costclass> costclass { get; set; }
         public virtual DbSet<earning> earning { get; set; }
@@ -34,7 +35,6 @@ namespace DataFactory.MODEL
         public virtual DbSet<monthcost> monthcost { get; set; }
         public virtual DbSet<navigation> navigation { get; set; }
         public virtual DbSet<persons> persons { get; set; }
-        public virtual DbSet<seedoctor> seedoctor { get; set; }
         public virtual DbSet<shops> shops { get; set; }
         public virtual DbSet<view_companycostlist> view_companycostlist { get; set; }
         public virtual DbSet<view_costlist> view_costlist { get; set; }

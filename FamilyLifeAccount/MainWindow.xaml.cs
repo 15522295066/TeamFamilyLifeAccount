@@ -53,8 +53,8 @@ namespace FamilyLifeAccount
                     Dispatcher.BeginInvoke(new ThreadStart(CreateBackground), DispatcherPriority.Normal);
                     Dispatcher.BeginInvoke(new ThreadStart(InitializeMenu), DispatcherPriority.Normal);
                     Dispatcher.BeginInvoke(new ThreadStart(LaunchTimer),DispatcherPriority.Normal);
-            
-                   
+
+
                 }), null);
             }
             catch (Exception ex)

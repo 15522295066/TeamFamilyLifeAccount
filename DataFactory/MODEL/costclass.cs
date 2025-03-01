@@ -22,5 +22,6 @@ namespace DataFactory.MODEL
         public int Sort { get; set; }
         public System.DateTime AddTime { get; set; }
         public Nullable<int> IsCompany { get; set; }
+        public string CompanyId { get; set; }
     }
 }

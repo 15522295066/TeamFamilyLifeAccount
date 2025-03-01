@@ -59,7 +59,7 @@ namespace FamilyLifeAccount.View.EveryDay
         {
             using (familylifeaccountEntities db = new familylifeaccountEntities())
             {
-                List<costclass> costlist = db.costclass.Where(m => m.ParentID.Equals(0)).OrderBy(m => m.Sort).ToList();
+                List<costclass> costlist = db.costclass.Where(m => m.ParentID.Equals(0) && m.IsCompany == 0).OrderBy(m => m.Sort).ToList();
                 // Menu2.Style = Resources["MenuItemStyle"] as Style;
                 foreach (var cost in costlist)
                 {
@@ -92,9 +92,13 @@ namespace FamilyLifeAccount.View.EveryDay
                             item2.Items.Add(item3);
                         }
                         #endregion
+
+                        //item.Items.Add(item2)
                     }
+
                     #endregion
-                    Menu2.Items.Add(item);
+                    Menu1.Items.Clear();
+                    Menu1.Items.Add(item);
                 }
             }
         }
@@ -117,6 +121,6 @@ namespace FamilyLifeAccount.View.EveryDay
         }
         #endregion
 
-      
+
     }
 }
