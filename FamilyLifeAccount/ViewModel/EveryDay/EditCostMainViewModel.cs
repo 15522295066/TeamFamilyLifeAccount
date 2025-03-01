@@ -107,7 +107,7 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 {
                     try
                     {
-                        //添加IsCompany默认值
+                        //添加IsCompany默认值 修改当前分支的最新提交
                         MyCost.IsCompany = 0;
                         if (MyCost.CostID == 0)
                         {
