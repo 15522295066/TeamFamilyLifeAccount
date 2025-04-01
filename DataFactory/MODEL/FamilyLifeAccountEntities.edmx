@@ -151,25 +151,28 @@
 警告 6002: 表/视图“def.familylifeaccount.view_companycostlist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="view_companycostlist">
           <Key>
-            <PropertyRef Name="AccountName" />
-            <PropertyRef Name="ShopName" />
+            <PropertyRef Name="CostID" />
             <PropertyRef Name="CostName" />
             <PropertyRef Name="AddTime" />
             <PropertyRef Name="CostMoney" />
             <PropertyRef Name="IsDel" />
-            <PropertyRef Name="ParentID" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="CostClassID" />
             <PropertyRef Name="ClassName" />
+            <PropertyRef Name="ParentID" />
           </Key>
-          <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ShopName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CostID" Type="int" Nullable="false" />
           <Property Name="CostName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="CostContent" Type="text" />
           <Property Name="CostMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IsDel" Type="int" Nullable="false" />
-          <Property Name="ParentID" Type="int" Nullable="false" />
-          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CostContent" Type="text" />
           <Property Name="IsCompany" Type="int" />
+          <Property Name="CompanyId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="255" />
+          <Property Name="CostClassID" Type="int" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“def.familylifeaccount.view_costlist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -288,16 +291,18 @@
           <EntitySet Name="shops" EntityType="Self.shops" Schema="familylifeaccount" store:Type="Tables" />
           <EntitySet Name="view_companycostlist" EntityType="Self.view_companycostlist" store:Type="Views" store:Schema="familylifeaccount">
             <DefiningQuery>SELECT
-`view_companycostlist`.`AccountName`, 
-`view_companycostlist`.`ShopName`, 
+`view_companycostlist`.`CostID`, 
 `view_companycostlist`.`CostName`, 
 `view_companycostlist`.`AddTime`, 
+`view_companycostlist`.`CostContent`, 
 `view_companycostlist`.`CostMoney`, 
 `view_companycostlist`.`IsDel`, 
-`view_companycostlist`.`ParentID`, 
+`view_companycostlist`.`IsCompany`, 
+`view_companycostlist`.`CompanyId`, 
+`view_companycostlist`.`CompanyName`, 
+`view_companycostlist`.`CostClassID`, 
 `view_companycostlist`.`ClassName`, 
-`view_companycostlist`.`CostContent`, 
-`view_companycostlist`.`IsCompany`
+`view_companycostlist`.`ParentID`
 FROM `view_companycostlist` AS `view_companycostlist`</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_costlist" EntityType="Self.view_costlist" store:Type="Views" store:Schema="familylifeaccount">
@@ -525,25 +530,28 @@ FROM `view_shopslist` AS `view_shopslist`</DefiningQuery>
         </EntityType>
         <EntityType Name="view_companycostlist">
           <Key>
-            <PropertyRef Name="AccountName" />
-            <PropertyRef Name="ShopName" />
+            <PropertyRef Name="CostID" />
             <PropertyRef Name="CostName" />
             <PropertyRef Name="AddTime" />
             <PropertyRef Name="CostMoney" />
             <PropertyRef Name="IsDel" />
-            <PropertyRef Name="ParentID" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="CostClassID" />
             <PropertyRef Name="ClassName" />
+            <PropertyRef Name="ParentID" />
           </Key>
-          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ShopName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CostID" Type="Int32" Nullable="false" />
           <Property Name="CostName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="CostContent" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Name="CostMoney" Type="Decimal" Nullable="false" />
           <Property Name="IsDel" Type="Int32" Nullable="false" />
-          <Property Name="ParentID" Type="Int32" Nullable="false" />
-          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CostContent" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Name="IsCompany" Type="Int32" />
+          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CostClassID" Type="Int32" Nullable="false" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="view_costlist">
           <Key>
@@ -802,16 +810,18 @@ FROM `view_shopslist` AS `view_shopslist`</DefiningQuery>
           <EntitySetMapping Name="view_companycostlist">
             <EntityTypeMapping TypeName="familylifeaccountModel.view_companycostlist">
               <MappingFragment StoreEntitySet="view_companycostlist">
-                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
-                <ScalarProperty Name="CostContent" ColumnName="CostContent" />
-                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="CostClassID" ColumnName="CostClassID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
                 <ScalarProperty Name="IsDel" ColumnName="IsDel" />
                 <ScalarProperty Name="CostMoney" ColumnName="CostMoney" />
+                <ScalarProperty Name="CostContent" ColumnName="CostContent" />
                 <ScalarProperty Name="AddTime" ColumnName="AddTime" />
                 <ScalarProperty Name="CostName" ColumnName="CostName" />
-                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
-                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="CostID" ColumnName="CostID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

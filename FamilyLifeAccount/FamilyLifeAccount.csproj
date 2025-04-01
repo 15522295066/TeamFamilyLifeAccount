@@ -97,7 +97,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>FamilyLifeAccount.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -234,6 +235,7 @@
     <Compile Include="Model\EnableStatus.cs" />
     <Compile Include="Model\MenuCostClass.cs" />
     <Compile Include="Model\Months.cs" />
+    <Compile Include="Model\MyCompanyList.cs" />
     <Compile Include="Model\MyCostClass.cs" />
     <Compile Include="Model\MyCostList.cs" />
     <Compile Include="ViewModel\EveryDay\CompanyCostMainViewModel.cs">
@@ -609,7 +611,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="FamilyLifeAccount.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

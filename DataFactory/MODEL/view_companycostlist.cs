@@ -14,15 +14,17 @@ namespace DataFactory.MODEL
     
     public partial class view_companycostlist
     {
-        public string AccountName { get; set; }
-        public string ShopName { get; set; }
+        public int CostID { get; set; }
         public string CostName { get; set; }
         public System.DateTime AddTime { get; set; }
+        public string CostContent { get; set; }
         public decimal CostMoney { get; set; }
         public int IsDel { get; set; }
-        public int ParentID { get; set; }
-        public string ClassName { get; set; }
-        public string CostContent { get; set; }
         public Nullable<int> IsCompany { get; set; }
+        public string CompanyId { get; set; }
+        public string CompanyName { get; set; }
+        public int CostClassID { get; set; }
+        public string ClassName { get; set; }
+        public int ParentID { get; set; }
     }
 }

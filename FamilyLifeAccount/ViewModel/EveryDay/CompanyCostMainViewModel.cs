@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using FamilyLifeAccount.Model;
 using FamilyLifeAccount.View.EveryDay;
 using System.Data;
+using System.Data.Entity;
 
 
 namespace FamilyLifeAccount.ViewModel.EveryDay
@@ -100,40 +101,34 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
         public override void GetList()
         {
-
             DateTime ED = EndDate.Date.AddHours(23);
-            var sql = dal.GetList<view_costlist>(m => (m.AddTime >= StartDate && m.AddTime <= ED) && m.IsDel.Equals(0) && m.IsCompany==1);
+            var sql = dal.FindAll<view_companycostlist>(m => m.IsDel == 0);
+            sql = sql.Where(m => (m.AddTime >= StartDate && m.AddTime <= ED) && m.IsDel.Equals(0));
 
             if (!string.IsNullOrWhiteSpace(Key))
             {
-                sql = sql.Where(m => m.CostName.Contains(Key)).ToList();
+                sql = sql.Where(m => m.CostName.Contains(Key));
             }
-            sql = sql.OrderByDescending(m => m.AddTime).ToList();
-            if (sql.Count() > 0)
+            var list = sql.ToList();
+            CompanyCostList = list.Select(m => new MyCompanyList
             {
-                base.Pagin.SumPrice = sql.Sum(m => m.CostMoney);
-            }
-            else
-            {
-                base.Pagin.SumPrice = 0;
-            }
-            CostList = (from c in sql
-                        select new MyCostList
-                        {
-                            CostID = c.CostID,
-                            ParentClassName = dal.GetOneModel<costclass>(m => m.CostClassID == c.ParentID).ClassName,
-                            CostName = c.CostName,
-                            ClassName = c.ClassName,
-                            ShopName = c.ShopName,
-                            CostMoney = c.CostMoney,
-                            AccountName = c.AccountName,
-                            AddTime = c.AddTime,
-                            UserName = c.UserName,
-                            CostContent = c.CostContent
-                        }).ToList();
-            
-            //base.Pagin.RecordCount = CostList.Count;
-            //CostList = Paging<MyCostList>.GetListByPage(list.ToList(), Pagin.PageNo, Pagin.PageSize);
+                AddTime = m.AddTime,
+                ClassName = m.ClassName,
+                CompanyName = m.CompanyName,
+                CostContent = m.CostContent,
+                CostMoney = m.CostMoney,
+                CostName = m.CostName,
+                CostClassID = m.CostClassID,
+                CompanyId = m.CompanyId,
+                ParentID = m.ParentID,
+                CostID = m.CostID,
+                ParentClassName = dal.GetOneModel<costclass>(c => c.CostClassID == m.ParentID).ClassName,
+
+            }).ToList();
+         
+            base.Pagin.RecordCount = CompanyCostList.Count;
+            base.Pagin.SumPrice = CompanyCostList.Sum(m => m.CostMoney);
+            //CompanyCostList = Paging<MyCompanyList>.GetListByPage(CompanyCostList, Pagin.PageNo, Pagin.PageSize);
             //CostList = list.ToList();
         }
 
@@ -160,9 +155,20 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
         }
 
 
+        private List<MyCompanyList> _CompanyCostList;
+        public List<MyCompanyList> CompanyCostList
+        {
+            get { return _CompanyCostList; }
+            set
+            {
+                _CompanyCostList = value;
+                this.RaisePropertyChanged("CompanyCostList");
+            }
+        }
 
-        private List<MyCostList> _CostList;
-        public List<MyCostList> CostList
+
+        private List<view_companycostlist> _CostList;
+        public List<view_companycostlist> CostList
         {
             get { return _CostList; }
             set

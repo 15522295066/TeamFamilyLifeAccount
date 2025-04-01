@@ -54,8 +54,9 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             PersionList = new ObservableCollection<persons>(sql);
             ShopList = new List<shops>();
             ShopList.Add(new shops { ShopName = "请选择", ShopID = 0 });
-            ClassList = dal.GetList<costclass>();
+            ClassList = dal.GetList<costclass>(m=>m.IsCompany==1);
             AccountList = dal.GetList<account>(m => m.State == 1);
+            CompanyList = dal.GetList<company>();
 
         }
 
@@ -74,25 +75,27 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
             if (msg.Notification.Equals(Notifications.UpdateShow))
             {
-                ShopList = dal.GetList<shops>();
+                //ShopList = dal.GetList<shops>();
                 int ID = int.Parse(msg.Content);
                 MyCost = dal.GetOneModel<cost>(m => m.CostID.Equals(ID));
-
+                
             }
             if (msg.Notification.Equals(Notifications.AddShow))
             {
-                MyCost.CostID = 0;
-
+                //MyCost.CostID = 0;
+                //MyCost.CompanyId = msg.Content;
             }
             //接收改变分类ID消息
             if (msg.Notification.Equals(Notifications.Parameter))
             {
+                MyCost.CompanyId = msg.Sender.ToString();   
                 MyCost.CostClassID = int.Parse(msg.Content);
-                ShopList = dal.GetList<shops>(m => m.CostClassID.Equals(MyCost.CostClassID));
-                if (ShopList.Count > 0)
-                {
-                    MyCost.ShopID = ShopList[0].ShopID;
-                }
+               
+                //ShopList = dal.GetList<shops>(m => m.CostClassID.Equals(MyCost.CostClassID));
+                //if (ShopList.Count > 0)
+                //{
+                //    MyCost.ShopID = ShopList[0].ShopID;
+                //}
             }
         }
 
@@ -198,17 +201,27 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
 
 
-        private List<view_costlist> _CostList;
-        public List<view_costlist> CostList
+        private List<company> _companylist;
+        public List<company> CompanyList
         {
-            get { return _CostList; }
+            get { return _companylist; }
             set
             {
-                _CostList = value;
-                this.RaisePropertyChanged("CostList");
+                _companylist = value;
+                this.RaisePropertyChanged("CompanyList");
             }
         }
 
+        private List<view_companycostlist> _view_companycostlist;
+        public List<view_companycostlist> CompanyCostList
+        {
+            get { return _view_companycostlist; }
+            set
+            {
+                _view_companycostlist = value;
+                this.RaisePropertyChanged("CompanyCostList");
+            }
+        }
 
         private ObservableCollection<persons> _PersionsList;
         public ObservableCollection<persons> PersionList

@@ -90,7 +90,8 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 ShopList = dal.GetList<shops>(m => m.CostClassID.Equals(MyCost.CostClassID));
                 if (ShopList.Count > 0)
                 {
-                    MyCost.ShopID = ShopList[0].ShopID;
+                    MyCost.ShopID= ShopList.FirstOrDefault().ShopID;
+                    //MyCost = dal.GetOneModel<cost>(m => m.ShopID == MyCost.ShopID);
                 }
             }
         }

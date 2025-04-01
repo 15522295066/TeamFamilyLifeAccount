@@ -55,7 +55,7 @@
                     
                     <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0" Content="商家："    Name="label3"  />
                     <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="1" Grid.Column="2" />
-                    <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding ShopList}" DisplayMemberPath="ShopName" SelectedValuePath="ShopID" SelectedValue="{Binding MyCost.ShopID}" SelectedIndex="0" />
+                    <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding ShopList}" DisplayMemberPath="ShopName" SelectedValuePath="ShopID" SelectedValue="{Binding MyCost.ShopID}"  />
 
 
                     <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0"  Content="项目："    Name="label5"  />

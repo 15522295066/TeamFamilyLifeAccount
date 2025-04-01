@@ -259,8 +259,8 @@
   <ItemGroup>
     <Content Include="MODEL\FamilyLifeAccountEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FamilyLifeAccountEntities.Context.cs</LastGenOutput>
       <DependentUpon>FamilyLifeAccountEntities.edmx</DependentUpon>
+      <LastGenOutput>FamilyLifeAccountEntities.Context.cs</LastGenOutput>
     </Content>
     <Content Include="MODEL\FamilyLifeAccountEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

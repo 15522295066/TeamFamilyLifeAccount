@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1ff18b4b128d41d49d5dda524fbb0ffc" Name="Diagram1">
+      <Diagram DiagramId="14c6d1bb9b244a4cbf331d235ade3a6d" Name="Diagram1">
         <EntityTypeShape EntityType="familylifeaccountModel.account" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="familylifeaccountModel.company" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="familylifeaccountModel.cost" Width="1.5" PointX="0.75" PointY="3.75" />

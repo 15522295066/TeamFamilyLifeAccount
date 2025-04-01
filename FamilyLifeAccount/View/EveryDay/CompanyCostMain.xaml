@@ -88,21 +88,23 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
-                <DataGrid  Grid.Row="0"  ItemsSource="{Binding CostList,IsAsync=True}" LoadingRow="GetIndex"
+                <DataGrid  Grid.Row="0"  ItemsSource="{Binding CompanyCostList,IsAsync=True}" LoadingRow="GetIndex"
                           Style="{StaticResource DataGridStyle}"
                            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
                            RowHeaderStyle="{StaticResource DataGridRowHeaderStyle}"
                            RowStyle="{StaticResource DataGridRowStyle}"
                            CellStyle="{StaticResource DataGridCellStyle}">
                     <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="付款事由" Binding="{Binding CompanyName}"/>
                         <DataGridTextColumn Header="付款事由" Binding="{Binding CostName}"/>
-                        <DataGridTextColumn Header="项目名称"  Binding="{Binding ClassName}"/>
+                        <DataGridTextColumn Header="分类名称"  Binding="{Binding ClassName}"/>
                         <DataGridTextColumn Header="所属父类"  Binding="{Binding ParentClassName}"/>
-                        <DataGridTextColumn Header="支付对象"  Binding="{Binding ShopName}"/>
+                   
                         <DataGridTextColumn Header="支出金额"  Binding="{Binding CostMoney,StringFormat='n2'}"/>
-                        <DataGridTextColumn Header="账户"  Binding="{Binding AccountName}"/>
+                     
                         <DataGridTextColumn Header="时间" Binding="{Binding AddTime, StringFormat='yyyy-MM-dd'}"/>
-                        <DataGridTextColumn Header="成员"  Binding="{Binding UserName}"/>
+                      
                         <DataGridTemplateColumn Header="操作">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

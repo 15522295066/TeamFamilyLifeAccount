@@ -94,20 +94,31 @@ namespace DataFactory.DAL
         /// 所有数据的查询列表
         /// </summary>
         /// <returns></returns>
-        public IQueryable FindAll<T>(T t) where T : class
+        public IQueryable<T> FindAll<T>() where T : class
         {
             return dbcontext.Set<T>().AsQueryable();
         }
 
        
 
+        /// <summary>
+        /// 多字段倒排序
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <typeparam name="Tkey">排序字段类型</typeparam>
+        /// <param name="sort">排序字段</param>
+        /// <returns></returns>
+        public IQueryable<T> FindAll<T, Tkey>(Expression<Func<T, Tkey>> sort) where T : class
+        {
+            return dbcontext.Set<T>().OrderBy(sort).AsQueryable();
+        }
 
         /// <summary>
         /// 根据指定条件表达式得到数据查询列表
         /// </summary>
         /// <param name="exp">条件表达式</param>
         /// <returns></returns>
-        public IQueryable FindAll<T>(Expression<Func<T, bool>> predicate) where T : class
+        public IQueryable<T> FindAll<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             return dbcontext.Set<T>().Where(predicate);
         }
