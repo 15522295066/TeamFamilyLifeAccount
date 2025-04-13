@@ -16,6 +16,9 @@ using System.Diagnostics;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using System.Configuration;
+using DataFactory.MODEL;
+using DataFactory.DAL;
+using System.Linq;
 
 namespace FamilyLifeAccount.Comm
 {
@@ -249,5 +252,49 @@ namespace FamilyLifeAccount.Comm
             return System.Drawing.Color.FromArgb(int_Red, int_Green, int_Blue);
         }
 
+        /// <summary>
+        /// 递归创建菜单
+        /// </summary>
+        /// <param name="menuItem"></param>
+        /// <param name="parentId"></param>
+        public static void TreeMenuEarningclass(MenuItem menuItem, int parentId, RoutedEventHandler item_Click)
+        {
+            DALBase dal = new DALBase();
+             
+            List<earningclass> subList = dal.FindAll<earningclass>(m => m.ParentID.Equals(parentId)).OrderBy(m => m.Sort).ToList();
+            foreach (earningclass item in subList)
+            {
+                menuItem.Click += new RoutedEventHandler(item_Click);
+                MenuItem subMenuItem = new MenuItem();
+                subMenuItem.Header = item.ClassName;
+                subMenuItem.Tag = item.EarningClassID;
+                menuItem.Items.Add(subMenuItem);
+                subMenuItem.Click += new RoutedEventHandler(item_Click);
+                //递归调用
+                TreeMenuEarningclass(subMenuItem, item.EarningClassID, item_Click);
+            }
+        }
+        /// <summary>
+        /// 递归创建菜单
+        /// </summary>
+        /// <param name="menuItem"></param>
+        /// <param name="parentId"></param>
+        public static void TreeMenuCostclass(MenuItem menuItem, int parentId, RoutedEventHandler item_Click)
+        {
+            DALBase dal = new DALBase();
+
+            List<costclass> subList = dal.FindAll<costclass>(m => m.ParentID.Equals(parentId)).OrderBy(m => m.Sort).ToList();
+            foreach (costclass item in subList)
+            {
+                menuItem.Click += new RoutedEventHandler(item_Click);
+                MenuItem subMenuItem = new MenuItem();
+                subMenuItem.Header = item.ClassName;
+                subMenuItem.Tag = item.CostClassID;
+                menuItem.Items.Add(subMenuItem);
+                subMenuItem.Click += new RoutedEventHandler(item_Click);
+                //递归调用
+                TreeMenuCostclass(subMenuItem, item.CostClassID, item_Click);
+            }
+        }
     }
 }

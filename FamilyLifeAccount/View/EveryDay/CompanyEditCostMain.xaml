@@ -57,8 +57,7 @@
                     <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="0" Grid.Column="2" />
                     <!--<ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="0" Grid.Column="1"  ItemsSource="{Binding ClassList}" DisplayMemberPath="ClassName" SelectedValuePath="CostClassID" SelectedValue="{Binding MyCost.CostClassID}" SelectedIndex="0" />-->
                     <Menu    Name="Menu1"  Style="{StaticResource MenuStyle}"  Grid.Row="1" Grid.Column="1"  >
-                        <!--<MenuItem Name="Menu2" Style="{StaticResource MenuItemStyle}" FontSize="14"   Header="请选择"  Width="200">
-                        </MenuItem>-->
+                        <MenuItem Name="Menu2"  Grid.Row="0" Grid.Column="1"  FontSize="14"   Header="请选择"  Width="200"    ></MenuItem>
                     </Menu>
 
                     

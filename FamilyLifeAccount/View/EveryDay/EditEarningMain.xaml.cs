@@ -48,32 +48,8 @@ namespace FamilyLifeAccount.View.EveryDay
         /// </summary>
         private void CreateMenu()
         {
-            using (familylifeaccountEntities db = new familylifeaccountEntities())
-            {
-                List<earningclass> earning = db.earningclass.Where(m => m.ParentID.Equals(0)).OrderBy(m => m.Sort).ToList();
-                // Menu2.Style = Resources["MenuItemStyle"] as Style;
-                foreach (var earn in earning)
-                {
-                    //RibbonApplicationMenuItem item = new RibbonApplicationMenuItem();
-                    MenuItem item = new MenuItem();
-                    item.Style = Resources["MenuItemStyle"] as Style;
-
-                    item.Header = earn.ClassName;
-                    item.Tag = earn.EarningClassID;
-                    List<earningclass> child = db.earningclass.Where(m => m.ParentID.Equals(earn.EarningClassID)).OrderBy(m => m.Sort).ToList();
-                    foreach (var childcost in child)
-                    {
-                        MenuItem childitem = new MenuItem();
-                        childitem.Style = Resources["MenuItemStyle"] as Style;
-                        item.FontSize = 13;
-                        childitem.Click += new RoutedEventHandler(item_Click);
-                        childitem.Header = childcost.ClassName;
-                        childitem.Tag = childcost.EarningClassID;
-                        item.Items.Add(childitem);
-                    }
-                    Menu2.Items.Add(item);
-                }
-            }
+            Menu2.Style = Resources["MenuItemStyle"] as Style;
+            UIBase.TreeMenuEarningclass(Menu2, 1, item_Click);
         }
 
         void item_Click(object sender, RoutedEventArgs e)

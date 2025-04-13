@@ -67,50 +67,8 @@ namespace FamilyLifeAccount.View.EveryDay
         /// </summary>
         private void CreateMenu()
         {
-            using (familylifeaccountEntities db = new familylifeaccountEntities())
-            {
-                List<costclass> costlist = db.costclass.Where(m => m.ParentID.Equals(0) && m.IsCompany == 1).OrderBy(m => m.Sort).ToList();
-                // Menu2.Style = Resources["MenuItemStyle"] as Style;
-                foreach (var cost in costlist)
-                {
-                    //RibbonApplicationMenuItem item = new RibbonApplicationMenuItem();
-                    MenuItem item = new MenuItem();
-                    item.Name = "item1";
-                    item.Style = Resources["MenuItemStyle"] as Style;
-                    item.Header = cost.ClassName;
-                    item.Tag = cost.CostClassID;
-                    List<costclass> child = db.costclass.Where(m => m.ParentID.Equals(cost.CostClassID)).OrderBy(m => m.Sort).ToList();
-                    item.Click += new RoutedEventHandler(item_Click);
-                    item.Width = 200;
-                    #region 二级菜单
-                    foreach (var childcost in child)
-                    {
-                        MenuItem item2 = new MenuItem();
-                        item2.Style = Resources["MenuItemStyle"] as Style;
-                        item.FontSize = 13;
-                        item2.Click += new RoutedEventHandler(item_Click);
-                        item2.Header = childcost.ClassName;
-                        item2.Tag = childcost.CostClassID;
-                        item.Items.Add(item2);
-                        List<costclass> thirdchild = db.costclass.Where(m => m.ParentID.Equals(childcost.CostClassID)).OrderBy(m => m.Sort).ToList();
-                        #region 三级菜单
-                        foreach (var third in thirdchild)
-                        {
-                            MenuItem item3 = new MenuItem();
-                            item3.Style = Resources["MenuItemStyle"] as Style;
-                            item.FontSize = 13;
-                            item3.Click += new RoutedEventHandler(item_Click);
-                            item3.Header = third.ClassName;
-                            item3.Tag = third.CostClassID;
-                            item2.Items.Add(item3);
-                        }
-                        #endregion
-                    }
-                    #endregion
-                    Menu1.Items.Add(item);
-
-                }
-            }
+            Menu2.Style = Resources["MenuItemStyle"] as Style;
+            UIBase.TreeMenuCostclass(Menu2, 2, item_Click);
         }
 
         void item_Click(object sender, RoutedEventArgs e)

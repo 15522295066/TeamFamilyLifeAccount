@@ -32,6 +32,7 @@ namespace FamilyLifeAccount.ViewModel.Settings
                 Messenger.Default.Register<NotificationMessage<string>>(this, (msg) => ReceiveMsg(msg));
                 SubCommand = new RelayCommand(() => Submit());
                 CloseCommand = new RelayCommand<object>((msg) => ClosePage(msg));
+                CancelCommand = new RelayCommand<object>((uc) => Cancel(uc));
             }
         }
 
@@ -48,6 +49,7 @@ namespace FamilyLifeAccount.ViewModel.Settings
         #region 命令初始化
         public RelayCommand SubCommand { get; set; }
         public RelayCommand<object> CloseCommand { get; set; }
+        public RelayCommand<object> CancelCommand { get; set; }
         #endregion
 
         #region 方法函数
@@ -68,7 +70,10 @@ namespace FamilyLifeAccount.ViewModel.Settings
 
             }
         }
-
+        private void Cancel(object uc)
+        {
+            UIBase.Close(uc);
+        }
 
         /// <summary>
         /// 提交更新

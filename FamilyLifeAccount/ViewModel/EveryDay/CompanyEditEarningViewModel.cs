@@ -64,6 +64,7 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
         #region 命令初始化
 
+
         public RelayCommand SubCommand { get; set; }
         public RelayCommand<string> CloseCommand { get; set; }
         #endregion
@@ -96,6 +97,12 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 //{
                 //    MyCost.ShopID = ShopList[0].ShopID;
                 //}
+            }
+            //接收改变分类ID消息
+            if (msg.Notification.Equals(Notifications.Parameter))
+            {
+                MyEarning.EarningClassID = int.Parse(msg.Content);
+
             }
         }
 
