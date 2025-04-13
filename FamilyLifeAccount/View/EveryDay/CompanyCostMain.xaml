@@ -96,10 +96,10 @@
                            CellStyle="{StaticResource DataGridCellStyle}">
                     <DataGrid.Columns>
 
-                        <DataGridTextColumn Header="付款事由" Binding="{Binding CompanyName}"/>
-                        <DataGridTextColumn Header="付款事由" Binding="{Binding CostName}"/>
-                        <DataGridTextColumn Header="分类名称"  Binding="{Binding ClassName}"/>
-                        <DataGridTextColumn Header="所属父类"  Binding="{Binding ParentClassName}"/>
+                        <DataGridTextColumn Header="公司名称" Binding="{Binding CompanyName}"/>
+                        <DataGridTextColumn Header="付款内容" Binding="{Binding CostName}"/>
+                        <DataGridTextColumn Header="分类"  Binding="{Binding ClassName}"/>
+                        <DataGridTextColumn Header="父类"  Binding="{Binding ParentClassName}"/>
                    
                         <DataGridTextColumn Header="支出金额"  Binding="{Binding CostMoney,StringFormat='n2'}"/>
                      

@@ -175,6 +175,33 @@
           <Property Name="ParentID" Type="int" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“def.familylifeaccount.view_companyearninglist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="view_companyearninglist">
+          <Key>
+            <PropertyRef Name="EarningID" />
+            <PropertyRef Name="EarningName" />
+            <PropertyRef Name="AddTime" />
+            <PropertyRef Name="EarningMoney" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="EarningClassID" />
+            <PropertyRef Name="ParentID" />
+          </Key>
+          <Property Name="EarningID" Type="int" Nullable="false" />
+          <Property Name="EarningName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="EarningContent" Type="text" />
+          <Property Name="EarningMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsDel" Type="int" Nullable="false" />
+          <Property Name="IsCompany" Type="int" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="255" />
+          <Property Name="CompanyId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EarningClassID" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“def.familylifeaccount.view_costlist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="view_costlist">
           <Key>
@@ -305,6 +332,22 @@
 `view_companycostlist`.`ParentID`
 FROM `view_companycostlist` AS `view_companycostlist`</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="view_companyearninglist" EntityType="Self.view_companyearninglist" store:Type="Views" store:Schema="familylifeaccount">
+            <DefiningQuery>SELECT
+`view_companyearninglist`.`EarningID`, 
+`view_companyearninglist`.`EarningName`, 
+`view_companyearninglist`.`AddTime`, 
+`view_companyearninglist`.`EarningContent`, 
+`view_companyearninglist`.`EarningMoney`, 
+`view_companyearninglist`.`IsDel`, 
+`view_companyearninglist`.`IsCompany`, 
+`view_companyearninglist`.`CompanyName`, 
+`view_companyearninglist`.`CompanyId`, 
+`view_companyearninglist`.`ClassName`, 
+`view_companyearninglist`.`EarningClassID`, 
+`view_companyearninglist`.`ParentID`
+FROM `view_companyearninglist` AS `view_companyearninglist`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="view_costlist" EntityType="Self.view_costlist" store:Type="Views" store:Schema="familylifeaccount">
             <DefiningQuery>SELECT
 `view_costlist`.`AccountName`, 
@@ -385,6 +428,7 @@ FROM `view_shopslist` AS `view_shopslist`</DefiningQuery>
           <EntitySet Name="view_earninglist" EntityType="familylifeaccountModel.view_earninglist" />
           <EntitySet Name="view_honglinglist" EntityType="familylifeaccountModel.view_honglinglist" />
           <EntitySet Name="view_shopslist" EntityType="familylifeaccountModel.view_shopslist" />
+          <EntitySet Name="view_companyearninglist" EntityType="familylifeaccountModel.view_companyearninglist" />
         </EntityContainer>
         <EntityType Name="account">
           <Key>
@@ -648,6 +692,31 @@ FROM `view_shopslist` AS `view_shopslist`</DefiningQuery>
           <Property Name="Address" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="IsCompany" Type="Int32" />
         </EntityType>
+        <EntityType Name="view_companyearninglist">
+          <Key>
+            <PropertyRef Name="EarningID" />
+            <PropertyRef Name="EarningName" />
+            <PropertyRef Name="AddTime" />
+            <PropertyRef Name="EarningMoney" />
+            <PropertyRef Name="IsDel" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="ClassName" />
+            <PropertyRef Name="EarningClassID" />
+            <PropertyRef Name="ParentID" />
+          </Key>
+          <Property Name="EarningID" Type="Int32" Nullable="false" />
+          <Property Name="EarningName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddTime" Type="DateTime" Nullable="false" />
+          <Property Name="EarningContent" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="EarningMoney" Type="Decimal" Nullable="false" />
+          <Property Name="IsDel" Type="Int32" Nullable="false" />
+          <Property Name="IsCompany" Type="Int32" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EarningClassID" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -888,6 +957,24 @@ FROM `view_shopslist` AS `view_shopslist`</DefiningQuery>
                 <ScalarProperty Name="ShopID" ColumnName="ShopID" />
                 <ScalarProperty Name="CostClassID" ColumnName="CostClassID" />
                 <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_companyearninglist">
+            <EntityTypeMapping TypeName="familylifeaccountModel.view_companyearninglist">
+              <MappingFragment StoreEntitySet="view_companyearninglist">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="EarningClassID" ColumnName="EarningClassID" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+                <ScalarProperty Name="IsDel" ColumnName="IsDel" />
+                <ScalarProperty Name="EarningMoney" ColumnName="EarningMoney" />
+                <ScalarProperty Name="EarningContent" ColumnName="EarningContent" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="EarningName" ColumnName="EarningName" />
+                <ScalarProperty Name="EarningID" ColumnName="EarningID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

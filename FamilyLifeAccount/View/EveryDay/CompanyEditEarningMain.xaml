@@ -8,15 +8,23 @@
              Height="370" Width="610"
              DataContext="{Binding CompanyEditEarningLocator, Source={StaticResource Locator}}"
              >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/XceedToolkit.xaml"  />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Border Style="{StaticResource PopBorderStyle}"  >
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
+            <Border  Style="{StaticResource PopTitleStyle}" >
 
-            <Label Style="{StaticResource TitleLabelStyle}"  Content="公司收入" />
-
+                <Label Style="{StaticResource TitleLabelStyle}"  Content="公司支出信息" />
+            </Border>
             <Border Grid.Row="1" Style="{StaticResource ContentBorderStyle}">
                 <Grid  Grid.Row="1" >
                     <Grid.RowDefinitions>
@@ -37,44 +45,54 @@
                         <ColumnDefinition Width="20"/>
                     </Grid.ColumnDefinitions>
 
+
+
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0" Content="公司："    Name="label3"  />
+
+                    <ComboBox Name="com_pany" Style="{StaticResource ComboBoxStyle}" Grid.Row="0" Grid.Column="1"  ItemsSource="{Binding CompanyList}" 
+                        SelectedItem="{Binding MyCost}"  DisplayMemberPath="CompanyName" SelectedValuePath="CompanyID" SelectedValue="{Binding MyCost.CompanyId}"   SelectedIndex="0" />
+
+
                     <!--内容区域-->
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="0"  Content="分类："  Name="label2"  />
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0"  Content="分类："  Name="label2"  />
                     <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="0" Grid.Column="2" />
-                    <!--<ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="0" Grid.Column="1"  ItemsSource="{Binding ClassList}" DisplayMemberPath="ClassName" SelectedValuePath="EarningClassID" SelectedValue="{Binding MyEarning.EarningClassID}" SelectedIndex="0" />-->
-                    <Menu    Name="Menu1"  Style="{StaticResource MenuStyle}"  Grid.Row="0" Grid.Column="1" >
-                        <MenuItem Name="Menu2"  Grid.Row="0" Grid.Column="1"  Style="{StaticResource MenuItemStyle}" FontSize="14"   Header="请选择"  Width="200"    ></MenuItem>
+                    <!--<ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="0" Grid.Column="1"  ItemsSource="{Binding ClassList}" DisplayMemberPath="ClassName" SelectedValuePath="CostClassID" SelectedValue="{Binding MyCost.CostClassID}" SelectedIndex="0" />-->
+                    <Menu    Name="Menu1"  Style="{StaticResource MenuStyle}"  Grid.Row="1" Grid.Column="1"  >
+                        <!--<MenuItem Name="Menu2" Style="{StaticResource MenuItemStyle}" FontSize="14"   Header="请选择"  Width="200">
+                        </MenuItem>-->
                     </Menu>
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0"  Content="项目："    Name="label5"  />
-                    <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.Column="1"   Text="{Binding MyEarning.EarningName}" />
-                    <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="2" Grid.Column="2" />
-
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="0"  Content="来源："   />
-                    <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="1" Grid.Column="1"  ItemsSource="{Binding ResourceList}" DisplayMemberPath="Name" SelectedValuePath="ID" SelectedValue="{Binding MyEarning.ResourceID}" SelectedIndex="0" />
-                    <Label Style="{StaticResource VerifyLabelStyle}" Grid.Row="1" HorizontalAlignment="Left" Content="*"  Grid.Column="2" />
 
 
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0" Content="金额："    Name="label4"  />
-                    <xctk:CalculatorUpDown  Style="{StaticResource CalculatorUpDownStyle}" Text="{Binding MyEarning.EarningMoney}" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                    <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="2" Grid.Column="2" />
-                   
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="4" Grid.Column="0"  Content="时间："   Name="label6"  />
-                    <DatePicker Style="{StaticResource DatePickerStyle}"  Text="{Binding MyEarning.AddTime,Mode=TwoWay, StringFormat='yyyy-MM-dd HH:mm'}"   Grid.Row="4" Grid.Column="1"   />
-                    <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="3" Grid.Column="2" />
 
+                    <!--<Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Content="项目："   />
+                    <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="1" Grid.Column="2" />
+                    <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="2" Grid.Column="1"  ItemsSource="{Binding ShopList}" DisplayMemberPath="ShopName" SelectedValuePath="ShopID" SelectedValue="{Binding MyCost.ShopID}" SelectedIndex="0" />-->
+
+
+
+
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Content="金额："    Name="label4"  />
+                    <Label Style="{StaticResource VerifyLabelStyle}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Content="*"  />
+                    <!--<TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="3" Grid.Column="1"  Name="textBox2"   Text="{Binding MyCost.CostMoney}"  />-->
+                    <xctk:CalculatorUpDown  Style="{StaticResource CalculatorUpDownStyle}" Text="{Binding MyCost.CostMoney}" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Left"/>
+
+
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="3" Grid.Column="0"  Content="时间："   Name="label6"  />
+                    <Label Style="{StaticResource VerifyLabelStyle}" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Content="*" />
+                    <!--<TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="4" Grid.Column="1"    Text="{Binding MyCost.AddTime,Mode=TwoWay,StringFormat='yyyy-MM-dd'}"  />-->
+                    <DatePicker Style="{StaticResource DatePickerStyle}"  Grid.Row="3" Grid.Column="1" Text="{Binding MyCost.AddTime,  Mode=TwoWay, StringFormat='yyyy-MM-dd HH:mm'}"   SelectedDateFormat="Short" />
                     <!--列3-->
 
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="0" Grid.Column="3" Content="成员："   Name="label7"  />
-                    <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="0" Grid.Column="5" />
-                    <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="0" Grid.Column="4"  ItemsSource="{Binding PersionList}" DisplayMemberPath="UserName" SelectedValuePath="UserID" SelectedValue="{Binding MyEarning.UserID}" SelectedIndex="0" />
 
-                    <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="3"  Content="账户："   Name="label8"  />
-                    <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="1" Grid.Column="5" />
-                    <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="1" Grid.Column="4"  ItemsSource="{Binding AccountList}" DisplayMemberPath="AccountName" SelectedValuePath="AccountID" SelectedValue="{Binding MyEarning.AccountID}" SelectedIndex="0" />
+
+                    <Label Style="{StaticResource LabelStyle}" Grid.Row="1" Grid.Column="3"  Content="项目："    Name="label5"  />
+                    <TextBox Style="{StaticResource TextBoxStyle}" Grid.Row="1" Grid.Column="4"   Text="{Binding MyCost.CostName}" />
+
 
                     <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="3"  Content="备注："    Name="label9"  />
-                    <TextBox TextWrapping="Wrap" Height="40"  Style="{StaticResource TextBoxStyle}" Grid.Row="2" Grid.ColumnSpan="1" Grid.Column="4"   Name="textBox5"   Text="{Binding MyEarning.EarningContent}" AcceptsReturn="True" />
-                    <Button Style="{StaticResource SubmitButtonStyle}" Grid.Row="6" Grid.Column="4" Content="确定"   Name="button1"   Command="{Binding SubCommand}" />
-                    <Button Style="{StaticResource CancelButtonStyle}" Grid.Row="6" Grid.Column="4" Content="取消"    Name="button2"   Command="{Binding CloseCommand}" />
+                    <TextBox TextWrapping="Wrap"   Height="100"   Style="{StaticResource TextBoxStyle}" Grid.RowSpan="3" Grid.Row="2"  Grid.Column="4"   Name="textBox5"   Text="{Binding MyCost.CostContent}" AcceptsReturn="True" AutoWordSelection="True" />
+                    <Button Style="{StaticResource SubmitButtonStyle}" Grid.Row="6" Grid.Column="4" Content="确定"   Name="button1"   Command="{Binding SubCommand}" IsDefault="True" />
+                    <Button Style="{StaticResource CancelButtonStyle}" Grid.Row="6" Grid.Column="4" Content="取消"    Name="button2"   Command="{Binding CloseCommand}" IsCancel="True" />
 
                 </Grid>
             </Border>

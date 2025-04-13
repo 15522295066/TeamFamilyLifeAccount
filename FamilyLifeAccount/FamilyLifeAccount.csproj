@@ -234,10 +234,12 @@
     <Compile Include="Model\CustomStatus.cs" />
     <Compile Include="Model\EnableStatus.cs" />
     <Compile Include="Model\MenuCostClass.cs" />
+    <Compile Include="Model\MenuEarningClass.cs" />
     <Compile Include="Model\Months.cs" />
     <Compile Include="Model\MyCompanyList.cs" />
     <Compile Include="Model\MyCostClass.cs" />
     <Compile Include="Model\MyCostList.cs" />
+    <Compile Include="Model\MyEarningList.cs" />
     <Compile Include="ViewModel\EveryDay\CompanyCostMainViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -275,8 +277,14 @@
     <Compile Include="View\EveryDay\CompanyCostMain.xaml.cs">
       <DependentUpon>CompanyCostMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EveryDay\CompanyEarningMain.xaml.cs">
+      <DependentUpon>CompanyEarningMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EveryDay\CompanyEditCostMain.xaml.cs">
       <DependentUpon>CompanyEditCostMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EveryDay\CompanyEditEarningMain.xaml.cs">
+      <DependentUpon>CompanyEditEarningMain.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EveryDay\CostMain.xaml.cs">
       <DependentUpon>CostMain.xaml</DependentUpon>
@@ -485,9 +493,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\EveryDay\CompanyEarningMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\EveryDay\CompanyEditCostMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EveryDay\CompanyEditEarningMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\EveryDay\CostMain.xaml">
       <SubType>Designer</SubType>

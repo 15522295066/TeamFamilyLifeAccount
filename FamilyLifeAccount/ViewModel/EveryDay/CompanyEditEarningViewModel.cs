@@ -31,7 +31,6 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
     /// </summary>
     public class CompanyEditEarningViewModel : ViewModelBase
     {
-        
         #region 数据初始化
 
         DALBase dal = new DALBase();
@@ -43,27 +42,28 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             {
                 InitLoad();
                 Messenger.Default.Register<NotificationMessage<string>>(this, (msg) => ReceiveMsg(msg));
-                SubCommand = new RelayCommand(() => Submit());
-                CloseCommand = new RelayCommand<string>((msg) => ClosePage(msg));
+                SubCommand = new RelayCommand(new Action(Submit));
+                CloseCommand = new RelayCommand<string>(ClosePage);
             }
         }
-
 
         private void InitLoad()
         {
             MyEarning.AddTime = DateTime.Now;
-            using (familylifeaccountEntities db = new familylifeaccountEntities())
-            {
-                var sql = db.persons.OrderByDescending(m => m.UserID);
-                PersionList = new ObservableCollection<persons>(sql);
-                ClassList = db.earningclass.ToList();
-                AccountList = db.account.ToList();
-            }
+            var sql = dal.GetList<persons>(m => m.State == 1).OrderByDescending(m => m.UserID);
+            PersionList = new ObservableCollection<persons>(sql);
+            ShopList = new List<shops>();
+            ShopList.Add(new shops { ShopName = "请选择", ShopID = 0 });
+            ClassList = dal.GetList<earningclass>(m => m.IsCompany == 1);
+            AccountList = dal.GetList<account>(m => m.State == 1);
+            CompanyList = dal.GetList<company>();
+
         }
 
         #endregion
 
         #region 命令初始化
+
         public RelayCommand SubCommand { get; set; }
         public RelayCommand<string> CloseCommand { get; set; }
         #endregion
@@ -72,29 +72,32 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
         private void ReceiveMsg(NotificationMessage<string> msg)
         {
-            using (familylifeaccountEntities db = new familylifeaccountEntities())
+
+            if (msg.Notification.Equals(Notifications.UpdateShow))
             {
-                if (msg.Notification.Equals(Notifications.UpdateShow))
-                {
-                    ShopList = db.shops.ToList();
-                    int ID = int.Parse(msg.Content);
-                    MyEarning = db.earning.Where(m => m.EarningID.Equals(ID)).FirstOrDefault();
-                 
-                }
-                if (msg.Notification.Equals(Notifications.AddShow))
-                {
-                    MyEarning.EarningID = 0;
-                    //MyEarning.AddTime = DateTime.Now;
-                }
-                //接收改变分类ID消息
-                if (msg.Notification.Equals(Notifications.Parameter))
-                {
-                    MyEarning.EarningClassID = int.Parse(msg.Content);
-                     
-                }
+                //ShopList = dal.GetList<shops>();
+                int ID = int.Parse(msg.Content);
+                MyEarning = dal.GetOneModel<earning>(m => m.EarningID.Equals(ID));
+
+            }
+            if (msg.Notification.Equals(Notifications.AddShow))
+            {
+                //MyCost.CostID = 0;
+                //MyCost.CompanyId = msg.Content;
+            }
+            //接收改变分类ID消息
+            if (msg.Notification.Equals(Notifications.Parameter))
+            {
+                MyEarning.CompanyId = msg.Sender.ToString();
+                MyEarning.EarningClassID = int.Parse(msg.Content);
+
+                //ShopList = dal.GetList<shops>(m => m.CostClassID.Equals(MyCost.CostClassID));
+                //if (ShopList.Count > 0)
+                //{
+                //    MyCost.ShopID = ShopList[0].ShopID;
+                //}
             }
         }
- 
 
         /// <summary>
         /// 提交更新
@@ -108,11 +111,12 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 {
                     try
                     {
-                        
+                        MyEarning.IsCompany = 1;
                         if (MyEarning.EarningID == 0)
                         {
-
+                            MyEarning.IsCompany = 1;
                             dal.Add<earning>(MyEarning);
+                             
                             uibase.MessageBox("添加信息成功!");
                         }
                         else
@@ -122,11 +126,12 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                         }
                         ClosePage(MyEarning.EarningID.ToString());
                         var msg = new NotificationMessage(null, Notifications.Refresh);
-                        Messenger.Default.Send<NotificationMessage, EarningViewModel>(msg);
+                        Messenger.Default.Send<NotificationMessage, CompanyEarningViewModel>(msg);
                     }
                     catch (Exception ex)
                     {
                         uibase.MessageBox(ex.Message);
+
                     }
                 }
             }
@@ -138,7 +143,7 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
         private void ClosePage(string id)
         {
             var msg = new NotificationMessage<string>(id, Notifications.Close);
-            Messenger.Default.Send<NotificationMessage<string>, EditEarningMain>(msg);
+            Messenger.Default.Send<NotificationMessage<string>, CompanyEditEarningMain>(msg);
         }
 
         #endregion
@@ -155,20 +160,45 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 this.RaisePropertyChanged("StatusList");
             }
         }
-        
 
-       
-        private List<view_earninglist> _EarningList;
-        public List<view_earninglist> EarningList
+
+
+
+
+        private List<MenuEarningClass> _MenuClassList = new List<MenuEarningClass>();
+        public List<MenuEarningClass> MenuClassList
         {
-            get { return _EarningList; }
+            get { return _MenuClassList; }
             set
             {
-                _EarningList = value;
-                this.RaisePropertyChanged("EarningList");
+                _MenuClassList = value;
+                this.RaisePropertyChanged("MenuClassList");
             }
         }
 
+
+
+        private List<company> _companylist;
+        public List<company> CompanyList
+        {
+            get { return _companylist; }
+            set
+            {
+                _companylist = value;
+                this.RaisePropertyChanged("CompanyList");
+            }
+        }
+
+        private List<view_companyearninglist> _view_companyearninglist;
+        public List<view_companyearninglist> CompanyEarningList
+        {
+            get { return _view_companyearninglist; }
+            set
+            {
+                _view_companyearninglist = value;
+                this.RaisePropertyChanged("CompanyEarningList");
+            }
+        }
 
         private ObservableCollection<persons> _PersionsList;
         public ObservableCollection<persons> PersionList
@@ -225,14 +255,14 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             }
         }
 
-        private DateTime _StartDate;
-        public DateTime StartDate
+        private DateTime _AddTime = DateTime.Now;
+        public DateTime AddTime
         {
-            get { return _StartDate; }
+            get { return _AddTime; }
             set
             {
-                _StartDate = value;
-                this.RaisePropertyChanged("StartDate");
+                _AddTime = value;
+                this.RaisePropertyChanged("AddTime");
             }
         }
 

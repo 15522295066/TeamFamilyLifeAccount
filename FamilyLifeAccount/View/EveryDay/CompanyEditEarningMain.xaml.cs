@@ -35,16 +35,26 @@ namespace FamilyLifeAccount.View.EveryDay
 
         private void ReceiveMsg(NotificationMessage<string> msg)
         {
-            //接收从EditCostMainViewModel发来关闭消息
+            //接收从CompanyCostMainViewModel发来的分类信息名称的消息
+            if (msg.Notification.Equals(Notifications.Parameter))
+            {
+                DALBase dal = new DALBase();
+                int id = int.Parse(msg.Content);
+                MenuItem menuItem = msg.Sender as MenuItem;
+                if (menuItem != null)
+                {
+                    int costId = Convert.ToInt32(menuItem.Tag);
+                    menuItem.Header = menuItem.Header;
+
+                    //Menu1.Items.Add(menuItem);
+                }
+
+            }
+            //接收从CompanyEditCostMainViewModel发来关闭消息
             if (msg.Notification.Equals(Notifications.Close))
             {
                 //ViewModelLocator.ClearEditCostMain();
                 ((Window)this.Parent).Close();
-            }
-            else if (msg.Notification.Equals(Notifications.Parameter))
-            {
-                int id = int.Parse(msg.Content);
-                Menu2.Header = dal.GetOneModel<View_EarningList>(m => m.EarningID==id).ClassName;
             }
         }
 
@@ -54,30 +64,48 @@ namespace FamilyLifeAccount.View.EveryDay
         /// </summary>
         private void CreateMenu()
         {
-            using (FamilyLifeAccountEntities db = new FamilyLifeAccountEntities())
+            using (familylifeaccountEntities db = new familylifeaccountEntities())
             {
-                List<EarningClass> earning = db.EarningClass.Where(m => m.ParentID.Equals(25)).OrderBy(m => m.Sort).ToList();
+                List<earningclass> costlist = db.earningclass.Where(m => m.ParentID.Equals(0) && m.IsCompany == 1).OrderBy(m => m.Sort).ToList();
                 // Menu2.Style = Resources["MenuItemStyle"] as Style;
-                foreach (var earn in earning)
+                foreach (var cost in costlist)
                 {
                     //RibbonApplicationMenuItem item = new RibbonApplicationMenuItem();
                     MenuItem item = new MenuItem();
+                    item.Name = "item1";
                     item.Style = Resources["MenuItemStyle"] as Style;
-
-                    item.Header = earn.ClassName;
-                    item.Tag = earn.EarningClassID;
-                    List<EarningClass> child = db.EarningClass.Where(m => m.ParentID.Equals(earn.EarningClassID)).OrderBy(m => m.Sort).ToList();
+                    item.Header = cost.ClassName;
+                    item.Tag = cost.EarningClassID;
+                    List<costclass> child = db.costclass.Where(m => m.ParentID.Equals(cost.EarningClassID)).OrderBy(m => m.Sort).ToList();
+                    item.Click += new RoutedEventHandler(item_Click);
+                    item.Width = 200;
+                    #region 二级菜单
                     foreach (var childcost in child)
                     {
-                        MenuItem childitem = new MenuItem();
-                        childitem.Style = Resources["MenuItemStyle"] as Style;
+                        MenuItem item2 = new MenuItem();
+                        item2.Style = Resources["MenuItemStyle"] as Style;
                         item.FontSize = 13;
-                        childitem.Click += new RoutedEventHandler(item_Click);
-                        childitem.Header = childcost.ClassName;
-                        childitem.Tag = childcost.EarningClassID;
-                        item.Items.Add(childitem);
+                        item2.Click += new RoutedEventHandler(item_Click);
+                        item2.Header = childcost.ClassName;
+                        item2.Tag = childcost.CostClassID;
+                        item.Items.Add(item2);
+                        List<costclass> thirdchild = db.costclass.Where(m => m.ParentID.Equals(childcost.CostClassID)).OrderBy(m => m.Sort).ToList();
+                        #region 三级菜单
+                        foreach (var third in thirdchild)
+                        {
+                            MenuItem item3 = new MenuItem();
+                            item3.Style = Resources["MenuItemStyle"] as Style;
+                            item.FontSize = 13;
+                            item3.Click += new RoutedEventHandler(item_Click);
+                            item3.Header = third.ClassName;
+                            item3.Tag = third.CostClassID;
+                            item2.Items.Add(item3);
+                        }
+                        #endregion
                     }
-                    Menu2.Items.Add(item);
+                    #endregion
+                    Menu1.Items.Add(item);
+
                 }
             }
         }
@@ -85,20 +113,25 @@ namespace FamilyLifeAccount.View.EveryDay
         void item_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ob = e.OriginalSource as MenuItem;
-            Menu2.Header = ob.Header.ToString();
+            //Menu1.Header = ob.Header.ToString();
             string classid = ob.Tag.ToString();
+            company company = (company)com_pany.SelectedItem as company;
+
             if (classid.Equals("0"))
             {
-
                 uibase.MessageBox("请选择支出分类!");
             }
             else
             {
-                //向EditEarningMainViewModel发送改变ClassID消息
-                var msg = new NotificationMessage<string>(classid, Notifications.Parameter);
+                string companyId = company.CompanyId;
+                //向CompanyEditCostMainViewModel发送改变ClassID消息
+                var msg = new NotificationMessage<string>(companyId, classid, Notifications.Parameter);
+                Messenger.Default.Send<NotificationMessage<string>, CompanyEditEarningMain>(msg);
                 Messenger.Default.Send<NotificationMessage<string>, CompanyEditEarningViewModel>(msg);
             }
         }
         #endregion
+
+
     }
 }

@@ -18,7 +18,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Style="{StaticResource TitleLabelStyle}" Content="分类信息" />
+                <Label Style="{StaticResource TitleLabelStyle}" Content="支出分类管理" />
 
                 <Border Grid.Row="1" Style="{StaticResource ContentBorderStyle}">
                     <Grid  Grid.Row="1" >
@@ -34,24 +34,21 @@
                             <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
 
-
                         <Label  Grid.Row="0" Grid.Column="0"  Style="{StaticResource LabelStyle}" Content="上级分类：" />
-                        <ComboBox Style="{StaticResource ComboBoxStyle}" SelectedValue="{Binding MyEarningClass.ParentID}" ItemsSource="{Binding EarningClassList}" DisplayMemberPath="ClassName" SelectedValuePath="EarningClassID" 
-                           SelectedIndex="0" Grid.Row="0" Grid.Column="1"   />
+                        <!--<ComboBox Style="{StaticResource ComboBoxStyle}" SelectedValue="{Binding MyCostClass.ParentID}" ItemsSource="{Binding CostClassList}" DisplayMemberPath="ClassName" SelectedValuePath="CostClassID" 
+                           SelectedIndex="0" Grid.Row="0" Grid.Column="1"   />-->
+                        <Menu    Name="Menu1"  Style="{StaticResource MenuStyle}"  Grid.Row="0" Grid.Column="1" >
+                            <MenuItem x:Name="Menu2"   Header="{Binding ParentName}"  Style="{StaticResource MenuItemStyle}"  BorderBrush="LightSkyBlue" FontSize="14" Height="26" Width="200" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right"  >
+                            </MenuItem>
+                        </Menu>
+                        <Label Style="{StaticResource LabelStyle}" Content="分类名称：" Grid.Row="1" Grid.Column="0"   />
+                        <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding MyCostClass.ClassName}" Grid.Row="1" Grid.Column="1"   ></TextBox>
+
+                        <Label Style="{StaticResource LabelStyle}" Content="备       注：" Grid.Row="2" Grid.Column="0"   />
+                        <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding MyCostClass.Remark}" Grid.Row="2" Grid.Column="1"  ></TextBox>
 
 
-                        <Label  Grid.Row="1" Grid.Column="0"  Style="{StaticResource LabelStyle}" Content="分类名称：" />
-                        <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding MyEarningClass.ClassName}" Grid.Row="1" Grid.Column="1"   ></TextBox>
-
-                       <Label Style="{StaticResource LabelStyle}" Content="备　　注：" Grid.Row="2" Grid.Column="0"   />
-                        <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding MyEarningClass.Remark}" Grid.Row="2" Grid.Column="1"   ></TextBox>
-
-                        
-                        <!--<Label Style="{StaticResource LabelStyle}" Content="状　　态：" Grid.Row="2" Grid.Column="0"   />
-                        <ComboBox Style="{StaticResource ComboBoxStyle}" SelectedValue="{Binding MyEarningClass.State}" ItemsSource="{Binding StatusList}" DisplayMemberPath="StatusRemark" SelectedValuePath="StatusCode" 
-                           SelectedIndex="1" Grid.Row="2" Grid.Column="1"   />-->
-
-                        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource CancelButtonStyle}" Content="取消"  Command="{Binding CloseCommand}" />
+                        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource CancelButtonStyle}" Content="取消"  Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=uc}"/>
                         <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource SubmitButtonStyle}" Content="确定"  Command="{Binding SubCommand}"/>
                     </Grid>
                 </Border>

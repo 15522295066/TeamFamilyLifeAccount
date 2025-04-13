@@ -194,6 +194,8 @@ namespace FamilyLifeAccount.ViewModel
         #region 收入
         private static CompanyEarningViewModel _CompanyEarningViewModel;
 
+       
+
         public static CompanyEarningViewModel CompanyEarningStatic
         {
             get
@@ -216,6 +218,17 @@ namespace FamilyLifeAccount.ViewModel
                 return CompanyEarningStatic;
             }
         }
+
+
+        /// <summary>
+        /// Provides a deterministic way to delete the Main property.
+        /// </summary>
+        public static void ClearCompanyEarningMain()
+        {
+            _CompanyEarningViewModel.Cleanup();
+            _CompanyEarningViewModel = null;
+        }
+
 
         /// <summary>
         /// Provides a deterministic way to delete the ExchangeVM property.
@@ -245,17 +258,17 @@ namespace FamilyLifeAccount.ViewModel
 
         #region 编辑/添加 收入
 
-        private static CompanyEditEarningViewModel _companyEditEarningViewModel;
+        private static CompanyEditEarningViewModel _CompanyEditEarningViewModel;
 
         public static CompanyEditEarningViewModel CompanyEditEarningStatic
         {
             get
             {
-                if (_companyEditEarningViewModel == null)
+                if (_CompanyEditEarningViewModel == null)
                 {
                     CreateCompanyEditEarningViewModel();
                 }
-                return _companyEditEarningViewModel;
+                return _CompanyEditEarningViewModel;
             }
         }
 
@@ -275,13 +288,19 @@ namespace FamilyLifeAccount.ViewModel
         /// </summary>
         public static void ClearCompanyEditEarningViewModel()
         {
-            if (_companyEditEarningViewModel == null)
+            if (_CompanyEditEarningViewModel == null)
             {
                 return;
             }
 
-            _companyEditEarningViewModel.Cleanup();
-            _companyEditEarningViewModel = null;
+            _CompanyEditEarningViewModel.Cleanup();
+            _CompanyEditEarningViewModel = null;
+        }
+
+        public static void ClearCompanyEditEarningMain()
+        {
+            _CompanyEditEarningViewModel.Cleanup();
+            _CompanyEditEarningViewModel = null;
         }
 
         /// <summary>
@@ -289,9 +308,9 @@ namespace FamilyLifeAccount.ViewModel
         /// </summary>
         public static void CreateCompanyEditEarningViewModel()
         {
-            if (_companyEditEarningViewModel == null)
+            if (_CompanyEditEarningViewModel == null)
             {
-                _companyEditEarningViewModel = new CompanyEditEarningViewModel();
+                _CompanyEditEarningViewModel = new CompanyEditEarningViewModel();
             }
         }
         #endregion

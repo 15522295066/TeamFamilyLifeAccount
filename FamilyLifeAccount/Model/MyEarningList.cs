@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FamilyLifeAccount.Model
 {
-    public class MyCompanyCostList : view_companycostlist
+    public class MyCompanyEarningList : view_companyearninglist
     {
         public string ParentClassName { get; set; }
     }

@@ -181,6 +181,9 @@
     <Compile Include="MODEL\view_companycostlist.cs">
       <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="MODEL\view_companyearninglist.cs">
+      <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="MODEL\view_costlist.cs">
       <DependentUpon>FamilyLifeAccountEntities.tt</DependentUpon>
     </Compile>

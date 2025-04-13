@@ -34,6 +34,16 @@ namespace FamilyLifeAccount.ViewModel
                 //GetBackground();
                 SubmitCommand = new RelayCommand(() => Submit());
                 CloseTabItemCommand = new RelayCommand<object>((tabitem) => CloseTabItem(tabitem));
+
+
+                //DataFactory.DAL.DALBase dal = new DataFactory.DAL.DALBase();
+                //DataFactory.MODEL.company model = new DataFactory.MODEL.company();
+                //model.AddTime = DateTime.Now;
+                //model.CompanyName = "字母元素软件开发中心";
+                //model.CompanyId = Guid.NewGuid().ToString().ToLower();
+                //dal.Add(model);
+
+
             }
             else
             {

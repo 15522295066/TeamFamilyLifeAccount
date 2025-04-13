@@ -30,7 +30,7 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
     /// </summary>
     public class CompanyEarningViewModel : PaginViewModel
     {
-     
+
         DALBase dal = new DALBase();
 
         public CompanyEarningViewModel()
@@ -49,20 +49,20 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
         private void ShowDialog(string id)
         {
-            EditEarningMain uc = new EditEarningMain();
+            CompanyEditEarningMain uc = new CompanyEditEarningMain();
             PopUpWindow pop = new PopUpWindow(uc);
-            pop.Closed += (s, e) => ViewModelLocator.ClearCompanyEditEarningViewModel();
+            pop.Closed += (s, e) => ViewModelLocator.ClearCompanyEditEarningMain();
             if (!string.IsNullOrEmpty(id))
             {
                 var msg = new NotificationMessage<string>(id, Notifications.UpdateShow);
-                Messenger.Default.Send<NotificationMessage<string>, EditEarningViewModel>(msg);
+                Messenger.Default.Send<NotificationMessage<string>, CompanyEditEarningViewModel>(msg);
                 var msg2 = new NotificationMessage<string>(id, Notifications.Parameter);
-                Messenger.Default.Send<NotificationMessage<string>, EditEarningMain>(msg2);
+                Messenger.Default.Send<NotificationMessage<string>, CompanyEditEarningMain>(msg2);
             }
             else
             {
                 var msg = new NotificationMessage<string>(id, Notifications.AddShow);
-                Messenger.Default.Send<NotificationMessage<string>, EditEarningViewModel>(msg);
+                Messenger.Default.Send<NotificationMessage<string>, CompanyEditEarningViewModel>(msg);
             }
 
             pop.ShowDialog();
@@ -94,40 +94,53 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
         private void InitLoad()
         {
-            StartDate = DateTime.Parse("2014-01-01");
+            string str = string.Format("{0}-{1}-{2}", DateTime.Now.Year, DateTime.Now.Month, "01");
+            MyEarning.AddTime = DateTime.Now;
+            StartDate = DateTime.Parse(str);
             EndDate = DateTime.Now.Date;
-            PersionList = dal.GetList<persons>().OrderByDescending(m=>m.UserID).ToList();
             GetList();
+            //using (familylifeaccountEntities db = new familylifeaccountEntities())
+            //{
+            //    PersionList = db.persons.ToList();
+            //    ShopList = db.shops.ToList();
+            //    ClassList = db.Earningclass.Where(m => m.ParentID.Equals(0)).ToList();
+            //    AccountList = db.account.ToList();
+            //}
         }
-         
-        /// <summary>
-        /// 收入列表
-        /// </summary>
+
+
+
         public override void GetList()
         {
-     
             DateTime ED = EndDate.Date.AddHours(23);
-            var sql = dal.GetList<view_earninglist>(m => m.AddTime >= StartDate && m.AddTime <= ED && m.IsDel.Equals(0));
-            if (UserID.Equals(1)||UserID.Equals(2))
-            {
-                sql = sql.Where(m => m.UserID.Equals(UserID)).ToList();
-            }
+            var sql = dal.FindAll<view_companyearninglist>(m => m.IsDel == 0);
+            sql = sql.Where(m => (m.AddTime >= StartDate && m.AddTime <= ED) && m.IsDel.Equals(0));
+
             if (!string.IsNullOrWhiteSpace(Key))
             {
-                sql = sql.FindAll(m => m.EarningName.Contains(Key));
+                sql = sql.Where(m => m.EarningName.Contains(Key));
             }
-            EarningList = sql.OrderByDescending(m => m.AddTime).ToList();
-            if (sql.Count() > 0)
+            var list = sql.ToList();
+            var CompanyEarningList = list.Select(m => new MyCompanyEarningList
             {
-                base.Pagin.SumPrice = sql.Sum(m => m.EarningMoney);
-            }
-            else
-            {
-                base.Pagin.SumPrice = 0;
-            }
-            //base.Pagin.RecordCount = EarningList.Count;
-            //EarningList = Paging<view_earninglist>.GetListByPage(EarningList, Pagin.PageNo, Pagin.PageSize);
+                AddTime = m.AddTime,
+                ClassName = m.ClassName,
+                CompanyName = m.CompanyName,
+                EarningContent = m.EarningContent,
+                EarningMoney = m.EarningMoney,
+                EarningName = m.EarningName,
+                EarningClassID = m.EarningClassID,
+                CompanyId = m.CompanyId,
+                ParentID = m.ParentID,
+                EarningID = m.EarningID,
+                ParentClassName = dal.GetOneModel<earningclass>(c => c.EarningClassID == m.ParentID).ClassName,
 
+            }).ToList();
+
+            base.Pagin.RecordCount = CompanyEarningList.Count;
+            base.Pagin.SumPrice = CompanyEarningList.Sum(m => m.EarningMoney);
+            //CompanyEarningList = Paging<MyCompanyList>.GetListByPage(CompanyEarningList, Pagin.PageNo, Pagin.PageSize);
+            //EarningList = list.ToList();
         }
 
         #endregion
@@ -141,22 +154,8 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
         #region 数据源属性初始化
 
-
-
-        private string _Key;
-        public string Key
-        {
-            get { return _Key; }
-            set
-            {
-                _Key = value;
-                this.RaisePropertyChanged("Key");
-            }
-        }
-
-
-        private List<earningclass> _MenuClassList = new List<earningclass>();
-        public List<earningclass> MenuClassList
+        private List<MenuEarningClass> _MenuClassList = new List<MenuEarningClass>();
+        public List<MenuEarningClass> MenuClassList
         {
             get { return _MenuClassList; }
             set
@@ -167,9 +166,20 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
         }
 
 
+        private List<MyCompanyEarningList> _MyCompanyEarningList;
+        public List<MyCompanyEarningList> MyCompanyEarningList
+        {
+            get { return _MyCompanyEarningList; }
+            set
+            {
+                _MyCompanyEarningList = value;
+                this.RaisePropertyChanged("MyCompanyEarningList");
+            }
+        }
 
-        private List<view_earninglist> _EarningList;
-        public List<view_earninglist> EarningList
+
+        private List<view_companyearninglist> _EarningList;
+        public List<view_companyearninglist> EarningList
         {
             get { return _EarningList; }
             set
@@ -181,7 +191,6 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
 
         private List<persons> _PersionsList;
-        
         public List<persons> PersionList
         {
             get { return _PersionsList; }
@@ -258,14 +267,31 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             }
         }
 
-        private int _UserID;
-        public int UserID
+        private string _Key;
+        public string Key
         {
-            get { return _UserID; }
+            get { return _Key; }
             set
             {
-                _UserID = value;
-                this.RaisePropertyChanged("UserID");
+                _Key = value;
+                this.RaisePropertyChanged("Key");
+            }
+        }
+
+
+
+        private string _ParentClassName = "sss";
+        public string ParentClassName
+        {
+            get
+            {
+
+                return _ParentClassName;
+            }
+            set
+            {
+                _ParentClassName = value;
+                this.RaisePropertyChanged("ParentClassName");
             }
         }
 

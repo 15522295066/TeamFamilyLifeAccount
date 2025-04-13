@@ -110,7 +110,7 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 sql = sql.Where(m => m.CostName.Contains(Key));
             }
             var list = sql.ToList();
-            CompanyCostList = list.Select(m => new MyCompanyList
+            CompanyCostList = list.Select(m => new MyCompanyCostList
             {
                 AddTime = m.AddTime,
                 ClassName = m.ClassName,
@@ -155,8 +155,8 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
         }
 
 
-        private List<MyCompanyList> _CompanyCostList;
-        public List<MyCompanyList> CompanyCostList
+        private List<MyCompanyCostList> _CompanyCostList;
+        public List<MyCompanyCostList> CompanyCostList
         {
             get { return _CompanyCostList; }
             set

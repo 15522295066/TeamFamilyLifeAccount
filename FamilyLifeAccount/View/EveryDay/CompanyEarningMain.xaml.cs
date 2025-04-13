@@ -23,7 +23,12 @@ namespace FamilyLifeAccount.View.EveryDay
         {
             InitializeComponent();
         }
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //FrameworkElement d = new FrameworkElement(); 
+            //System.Windows.Style style = (System.Windows.Style)this.Resources["messageBoxStyle"];
+            //Xceed.Wpf.Toolkit.MessageBox.Show(null, _styledMessage, _styledTitle, style);
+        }
         private void GetIndex(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = e.Row.GetIndex() + 1;

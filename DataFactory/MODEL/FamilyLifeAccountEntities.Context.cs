@@ -41,5 +41,6 @@ namespace DataFactory.MODEL
         public virtual DbSet<view_earninglist> view_earninglist { get; set; }
         public virtual DbSet<view_honglinglist> view_honglinglist { get; set; }
         public virtual DbSet<view_shopslist> view_shopslist { get; set; }
+        public virtual DbSet<view_companyearninglist> view_companyearninglist { get; set; }
     }
 }
