@@ -91,19 +91,9 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             {
                 MyEarning.CompanyId = msg.Sender.ToString();
                 MyEarning.EarningClassID = int.Parse(msg.Content);
-
-                //ShopList = dal.GetList<shops>(m => m.CostClassID.Equals(MyCost.CostClassID));
-                //if (ShopList.Count > 0)
-                //{
-                //    MyCost.ShopID = ShopList[0].ShopID;
-                //}
+ 
             }
-            //接收改变分类ID消息
-            if (msg.Notification.Equals(Notifications.Parameter))
-            {
-                MyEarning.EarningClassID = int.Parse(msg.Content);
-
-            }
+           
         }
 
         /// <summary>
@@ -112,7 +102,7 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
         private void Submit()
         {
 
-            if (uibase.MessageShowError(MyEarning.EarningClassID, "支出分类"))
+            if (uibase.MessageShowError(MyEarning.EarningClassID, "收入分类"))
             {
                 if (uibase.MessageShowError(MyEarning.EarningName, "项目"))
                 {
@@ -123,7 +113,6 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                         {
                             MyEarning.IsCompany = 1;
                             dal.Add<earning>(MyEarning);
-                             
                             uibase.MessageBox("添加信息成功!");
                         }
                         else

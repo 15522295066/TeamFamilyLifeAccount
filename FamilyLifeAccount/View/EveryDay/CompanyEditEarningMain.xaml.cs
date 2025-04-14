@@ -71,7 +71,7 @@ namespace FamilyLifeAccount.View.EveryDay
         void item_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ob = e.OriginalSource as MenuItem;
-            //Menu1.Header = ob.Header.ToString();
+            Menu2.Header = ob.Header.ToString();
             string classid = ob.Tag.ToString();
             company company = (company)com_pany.SelectedItem as company;
 

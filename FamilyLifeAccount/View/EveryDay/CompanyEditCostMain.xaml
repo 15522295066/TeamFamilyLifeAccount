@@ -57,17 +57,13 @@
                     <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="0" Grid.Column="2" />
                     <!--<ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="0" Grid.Column="1"  ItemsSource="{Binding ClassList}" DisplayMemberPath="ClassName" SelectedValuePath="CostClassID" SelectedValue="{Binding MyCost.CostClassID}" SelectedIndex="0" />-->
                     <Menu    Name="Menu1"  Style="{StaticResource MenuStyle}"  Grid.Row="1" Grid.Column="1"  >
-                        <MenuItem Name="Menu2"  Grid.Row="0" Grid.Column="1"  FontSize="14"   Header="请选择"  Width="200"    ></MenuItem>
+                        <MenuItem Name="Menu2"  Grid.Row="0" Grid.Column="1"  FontSize="14"   Width="200"></MenuItem>
                     </Menu>
 
-                    
-                    
+
                     <!--<Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Content="项目："   />
                     <Label Style="{StaticResource VerifyLabelStyle}" HorizontalAlignment="Left" Content="*" Grid.Row="1" Grid.Column="2" />
-                    <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="2" Grid.Column="1"  ItemsSource="{Binding ShopList}" DisplayMemberPath="ShopName" SelectedValuePath="ShopID" SelectedValue="{Binding MyCost.ShopID}" SelectedIndex="0" />-->
-                   
-
-                  
+                    <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="2" Grid.Column="1"  ItemsSource="{Binding ShopList}" DisplayMemberPath="ShopName" SelectedValuePath="ShopID" SelectedValue="{Binding MyCost.ShopID}" SelectedIndex="0" />-->                  
 
                     <Label Style="{StaticResource LabelStyle}" Grid.Row="2" Grid.Column="0" Content="金额："    Name="label4"  />
                     <Label Style="{StaticResource VerifyLabelStyle}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Content="*"  />

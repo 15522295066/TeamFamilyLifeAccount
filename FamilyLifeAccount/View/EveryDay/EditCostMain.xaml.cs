@@ -57,56 +57,14 @@ namespace FamilyLifeAccount.View.EveryDay
         /// </summary>
         private void CreateMenu()
         {
-            using (familylifeaccountEntities db = new familylifeaccountEntities())
-            {
-                List<costclass> costlist = db.costclass.Where(m => m.ParentID.Equals(0) && m.IsCompany == 0).OrderBy(m => m.Sort).ToList();
-                // Menu2.Style = Resources["MenuItemStyle"] as Style;
-                foreach (var cost in costlist)
-                {
-                    //RibbonApplicationMenuItem item = new RibbonApplicationMenuItem();
-                    MenuItem item = new MenuItem();
-                    item.Style = Resources["MenuItemStyle"] as Style;
-                    item.Header = cost.ClassName;
-                    item.Tag = cost.CostClassID;
-                    List<costclass> child = db.costclass.Where(m => m.ParentID.Equals(cost.CostClassID)).OrderBy(m => m.Sort).ToList();
-                    #region 二级菜单
-                    foreach (var childcost in child)
-                    {
-                        MenuItem item2 = new MenuItem();
-                        item2.Style = Resources["MenuItemStyle"] as Style;
-                        item.FontSize = 13;
-                        item2.Click += new RoutedEventHandler(item_Click);
-                        item2.Header = childcost.ClassName;
-                        item2.Tag = childcost.CostClassID;
-                        item.Items.Add(item2);
-                        List<costclass> thirdchild = db.costclass.Where(m => m.ParentID.Equals(childcost.CostClassID)).OrderBy(m => m.Sort).ToList();
-                        #region 三级菜单
-                        foreach (var third in thirdchild)
-                        {
-                            MenuItem item3 = new MenuItem();
-                            item3.Style = Resources["MenuItemStyle"] as Style;
-                            item.FontSize = 13;
-                            item3.Click += new RoutedEventHandler(item_Click);
-                            item3.Header = third.ClassName;
-                            item3.Tag = third.CostClassID;
-                            item2.Items.Add(item3);
-                        }
-                        #endregion
-
-                        //item.Items.Add(item2)
-                    }
-
-                    #endregion
-                    Menu1.Items.Clear();
-                    Menu1.Items.Add(item);
-                }
-            }
+            UIBase.TreeMenuEveryCostclass(MenuItem1, 1, item_Click);
         }
+
 
         void item_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ob = e.OriginalSource as MenuItem;
-            Menu2.Header = ob.Header.ToString();
+            MenuItem1.Header = ob.Header.ToString();
             string classid = ob.Tag.ToString();
             if (classid.Equals("0"))
             {
@@ -117,6 +75,11 @@ namespace FamilyLifeAccount.View.EveryDay
                 //向EditCostMainViewModel发送改变ClassID消息
                 var msg = new NotificationMessage<string>(classid, Notifications.Parameter);
                 Messenger.Default.Send<NotificationMessage<string>, EditCostMainViewModel>(msg);
+                if (combobox1.Items.Count>0)
+                {
+                    //根据分类ID查询商户默认第一个
+                    combobox1.SelectedIndex = 0;
+                }
             }
         }
         #endregion

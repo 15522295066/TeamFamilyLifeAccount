@@ -51,8 +51,8 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             MyCost.AddTime = DateTime.Now;
             var sql = dal.GetList<persons>(m=>m.State==0).OrderByDescending(m => m.UserID);
             PersionList = new ObservableCollection<persons>(sql);
-            ShopList = new List<shops>();
-            ShopList.Add(new shops { ShopName = "请选择", ShopID = 0 });
+            //ShopList = new List<shops>();
+            //ShopList.Add(new shops { ShopName = "请选择", ShopID = 0 });
             ClassList = dal.GetList<costclass>();
             AccountList = dal.GetList<account>(m=>m.State==0);
 
@@ -88,11 +88,6 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             {
                 MyCost.CostClassID = int.Parse(msg.Content);
                 ShopList = dal.GetList<shops>(m => m.CostClassID.Equals(MyCost.CostClassID));
-                if (ShopList.Count > 0)
-                {
-                    MyCost.ShopID= ShopList.FirstOrDefault().ShopID;
-                    //MyCost = dal.GetOneModel<cost>(m => m.ShopID == MyCost.ShopID);
-                }
             }
         }
 

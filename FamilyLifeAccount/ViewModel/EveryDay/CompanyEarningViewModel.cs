@@ -121,7 +121,7 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 sql = sql.Where(m => m.EarningName.Contains(Key));
             }
             var list = sql.ToList();
-            var CompanyEarningList = list.Select(m => new MyCompanyEarningList
+            MyCompanyEarningList = list.Select(m => new MyCompanyEarningList
             {
                 AddTime = m.AddTime,
                 ClassName = m.ClassName,
@@ -137,8 +137,8 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
 
             }).ToList();
 
-            base.Pagin.RecordCount = CompanyEarningList.Count;
-            base.Pagin.SumPrice = CompanyEarningList.Sum(m => m.EarningMoney);
+            base.Pagin.RecordCount = MyCompanyEarningList.Count;
+            base.Pagin.SumPrice = MyCompanyEarningList.Sum(m => m.EarningMoney);
             //CompanyEarningList = Paging<MyCompanyList>.GetListByPage(CompanyEarningList, Pagin.PageNo, Pagin.PageSize);
             //EarningList = list.ToList();
         }

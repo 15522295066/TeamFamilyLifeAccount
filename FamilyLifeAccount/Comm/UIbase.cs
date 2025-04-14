@@ -34,8 +34,8 @@ namespace FamilyLifeAccount.Comm
             pop.Background = Brushes.Transparent;
             pop.AllowsTransparency = true;
             pop.Content = uc;
-            pop.Height = uc.Height ;
-            pop.Width = uc.Width ;
+            pop.Height = uc.Height;
+            pop.Width = uc.Width;
             pop.WindowStyle = WindowStyle.None;
             //pop.griduc.Children.Add(uc);
             pop.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -48,7 +48,7 @@ namespace FamilyLifeAccount.Comm
             ((Window)(uc.Parent)).Close();
         }
 
-        public  bool MessageShowError(object value, string title)
+        public bool MessageShowError(object value, string title)
         {
             string msg = string.Format("请检查{0}信息，是否正确!", title);
             if (value != null)
@@ -103,14 +103,14 @@ namespace FamilyLifeAccount.Comm
             return Path.Combine(path, DirectoryName);
         }
 
-        public  void MessageBox(string msg)
+        public void MessageBox(string msg)
         {
             //动态加载资源字典
             ResourceDictionary resource = (ResourceDictionary)Application.LoadComponent(new Uri("Resources/XceedToolkit.xaml", UriKind.Relative));
             this.Resources.MergedDictionaries.Add(resource);
             string caption = "家庭记账";
             System.Windows.Style style = Resources["messageBoxStyle"] as Style;
-            Xceed.Wpf.Toolkit.MessageBox.Show(msg, caption, MessageBoxButton.OK,style);
+            Xceed.Wpf.Toolkit.MessageBox.Show(msg, caption, MessageBoxButton.OK, style);
         }
 
 
@@ -260,7 +260,7 @@ namespace FamilyLifeAccount.Comm
         public static void TreeMenuEarningclass(MenuItem menuItem, int parentId, RoutedEventHandler item_Click)
         {
             DALBase dal = new DALBase();
-             
+
             List<earningclass> subList = dal.FindAll<earningclass>(m => m.ParentID.Equals(parentId)).OrderBy(m => m.Sort).ToList();
             foreach (earningclass item in subList)
             {
@@ -280,6 +280,30 @@ namespace FamilyLifeAccount.Comm
         /// <param name="menuItem"></param>
         /// <param name="parentId"></param>
         public static void TreeMenuCostclass(MenuItem menuItem, int parentId, RoutedEventHandler item_Click)
+        {
+            DALBase dal = new DALBase();
+
+            List<costclass> subList = dal.FindAll<costclass>(m => m.ParentID.Equals(parentId)).OrderBy(m => m.Sort).ToList();
+            foreach (costclass item in subList)
+            {
+                menuItem.Click += new RoutedEventHandler(item_Click);
+                MenuItem subMenuItem = new MenuItem();
+                subMenuItem.Header = item.ClassName;
+                subMenuItem.Tag = item.CostClassID;
+                menuItem.Items.Add(subMenuItem);
+                subMenuItem.Click += new RoutedEventHandler(item_Click);
+                //递归调用
+                TreeMenuCostclass(subMenuItem, item.CostClassID, item_Click);
+            }
+        }
+
+
+        /// <summary>
+        /// 递归日常支出菜单
+        /// </summary>
+        /// <param name="menuItem"></param>
+        /// <param name="parentId"></param>
+        public static void TreeMenuEveryCostclass(MenuItem menuItem, int parentId, RoutedEventHandler item_Click)
         {
             DALBase dal = new DALBase();
 
