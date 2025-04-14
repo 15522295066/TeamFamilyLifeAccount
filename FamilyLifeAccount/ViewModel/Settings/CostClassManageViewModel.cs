@@ -92,11 +92,11 @@ namespace FamilyLifeAccount.ViewModel.Settings
         private void QueryList()
         {
             var sql = from cc in dal.GetList<costclass>(m => !m.ParentID.Equals(0))
-                      orderby cc.CostClassID descending
+                      orderby cc.Sort ascending
                       select new MyCostClass
                       {
                           CostClassID=cc.CostClassID,
-                          ParentName = dal.GetOneModel<costclass>(m => m.CostClassID.Equals(cc.ParentID)).ClassName,
+                          ParentName = dal.GetOneModel<costclass>(m => m.CostClassID.Equals(cc.ParentID))?.ClassName,
                           ClassName = cc.ClassName
                       };
             if (!string.IsNullOrWhiteSpace(Key))
