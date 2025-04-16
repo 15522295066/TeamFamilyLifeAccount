@@ -74,7 +74,7 @@ namespace FamilyLifeAccount.View.EveryDay
         void item_Click(object sender, RoutedEventArgs e)
         {
             MenuItem ob = e.OriginalSource as MenuItem;
-            //Menu1.Header = ob.Header.ToString();
+            Menu2.Header = ob.Header.ToString();
             string classid = ob.Tag.ToString();
             company company = (company)com_pany.SelectedItem as company;
 
@@ -87,7 +87,7 @@ namespace FamilyLifeAccount.View.EveryDay
                 string companyId = company.CompanyId;
                 //向CompanyEditCostMainViewModel发送改变ClassID消息
                 var msg = new NotificationMessage<string>(companyId, classid, Notifications.Parameter);
-                Messenger.Default.Send<NotificationMessage<string>, CompanyEditCostMain>(msg);
+               // Messenger.Default.Send<NotificationMessage<string>, CompanyEditCostMain>(msg);
                 Messenger.Default.Send<NotificationMessage<string>, CompanyEditCostMainViewModel>(msg);
             }
         }

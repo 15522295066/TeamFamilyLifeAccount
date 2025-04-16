@@ -52,11 +52,15 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             MyCost.AddTime = DateTime.Now;
             var sql = dal.GetList<persons>(m => m.State == 1).OrderByDescending(m => m.UserID);
             PersionList = new ObservableCollection<persons>(sql);
-            ShopList = new List<shops>();
-            ShopList.Add(new shops { ShopName = "请选择", ShopID = 0 });
+            //ShopList = new List<shops>();
+            //ShopList.Add(new shops { ShopName = "请选择", ShopID = 0 });
             ClassList = dal.GetList<costclass>(m=>m.IsCompany==1);
             AccountList = dal.GetList<account>(m => m.State == 1);
             CompanyList = dal.GetList<company>();
+            if (CompanyList.Count > 0)
+            {
+                MyCompany = CompanyList.FirstOrDefault();
+            }
 
         }
 
@@ -116,30 +120,6 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                         {
                             MyCost.IsCompany = 1;
                             dal.Add<cost>(MyCost);
-                            #region 添加月费用支付
-                            costclass model = dal.GetOneModel<costclass>(m => m.CostClassID.Equals(MyCost.CostClassID));
-                            if (model != null)
-                            {
-                                if (model.ParentID.Equals(8))
-                                {
-                                    monthcost mod = new monthcost
-                                    {
-                                        AddTime = MyCost.AddTime,
-                                        CostClassID = MyCost.CostClassID,
-                                        CostID = MyCost.CostID,
-                                        CostMoney = MyCost.CostMoney,
-                                        CostName = MyCost.CostName,
-                                        ClassName = model.ClassName,
-                                        Num = 0,
-                                        Note = MyCost.CostContent,
-                                        IsDel = 0,
-                                        UnitPrice = 0
-                                    };
-                                    dal.Add<monthcost>(mod);
-                                }
-                            }
-
-                            #endregion
                             uibase.MessageBox("添加信息成功!");
                         }
                         else
@@ -266,7 +246,16 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 this.RaisePropertyChanged("AccountList");
             }
         }
-
+        private company _MyCompany = new company();
+        public company MyCompany
+        {
+            get { return _MyCompany; }
+            set
+            {
+                _MyCompany = value;
+                this.RaisePropertyChanged("MyCompany");
+            }
+        }
         private cost _MyCost = new cost();
         public cost MyCost
         {

@@ -52,11 +52,15 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             MyEarning.AddTime = DateTime.Now;
             var sql = dal.GetList<persons>(m => m.State == 1).OrderByDescending(m => m.UserID);
             PersionList = new ObservableCollection<persons>(sql);
-            ShopList = new List<shops>();
-            ShopList.Add(new shops { ShopName = "请选择", ShopID = 0 });
+            //ShopList = new List<shops>();
+            //ShopList.Add(new shops { ShopName = "请选择", ShopID = 0 });
             ClassList = dal.GetList<earningclass>(m => m.IsCompany == 1);
             AccountList = dal.GetList<account>(m => m.State == 1);
             CompanyList = dal.GetList<company>();
+            if (CompanyList.Count>0)
+            {
+                MyCompany = CompanyList.FirstOrDefault();
+            }
 
         }
 
@@ -237,6 +241,16 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
             {
                 _AccountList = value;
                 this.RaisePropertyChanged("AccountList");
+            }
+        }
+        private company _MyCompany = new company();
+        public company MyCompany
+        {
+            get { return _MyCompany; }
+            set
+            {
+                _MyCompany = value;
+                this.RaisePropertyChanged("MyCompany");
             }
         }
 

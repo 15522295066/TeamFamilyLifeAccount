@@ -25,7 +25,7 @@ namespace FamilyLifeAccount.View.EveryDay
     public partial class CompanyEditEarningMain : UserControl
     {
         UIBase uibase = new UIBase();
-        DALBase dal = new DALBase();
+    
         public CompanyEditEarningMain()
         {
             InitializeComponent();
