@@ -18,6 +18,7 @@ using DataFactory.MODEL;
 using FamilyLifeAccount.Comm;
 using FamilyLifeAccount.View.Share;
 using System.Threading;
+using DataFactory.DAL;
 
 
 namespace FamilyLifeAccount.View.Statistics
@@ -127,6 +128,19 @@ namespace FamilyLifeAccount.View.Statistics
             //dataSeriesPineapple.ShowInLegend = true;//图例
             // 设置数据点              
             DataPoint dataPoint2;
+
+            //int parentId = Convert.ToInt32(cbbParent.SelectedValue) ;
+            //int chaildId= Convert.ToInt32(cbbChild.SelectedValue);
+            //DALBase dal = new DALBase();
+            //var data = dal.GetList<view_costlist>();
+            //if (parentId != 0)
+            //{
+            //    data.Where(m => m.ParentID.Equals(parentId));   
+            //}
+            //if (chaildId!=0)
+            //{
+            //    data.Where(m => m.ParentID.Equals(chaildId));
+            //}
             using (familylifeaccountEntities db = new familylifeaccountEntities())
             {
                 //var sql = db.view_costlist.Where(m => m.AddTime >= s && m.AddTime <= e && m.IsDel.Equals(0));
@@ -144,7 +158,7 @@ namespace FamilyLifeAccount.View.Statistics
                           };
                 if (!parentid.Equals(0))
                 {
-                    //sql = sql.Where(m => m.ParentID.Equals(parentid));
+                    sql = sql.Where(m => m.ParentID.Equals(parentid));
                     sql = from c in db.view_costlist
                           where c.AddTime >= s && c.AddTime <= e && c.ParentID.Equals(parentid)
                           group c by c.CostClassID into gg

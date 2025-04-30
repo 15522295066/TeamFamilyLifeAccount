@@ -124,7 +124,7 @@ namespace FamilyLifeAccount.ViewModel.EveryDay
                 CostID = m.CostID,
                 ParentClassName = dal.GetOneModel<costclass>(c => c.CostClassID == m.ParentID).ClassName,
 
-            }).ToList();
+            }).OrderByDescending(m=>m.AddTime).ToList();
          
             base.Pagin.RecordCount = CompanyCostList.Count;
             base.Pagin.SumPrice = CompanyCostList.Sum(m => m.CostMoney);
